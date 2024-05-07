@@ -438,7 +438,7 @@ body {
 }
 
 .menubutton {
-    background-image: url("images/button.png");
+    background-image: url("../images/button.webp");
     background-position: center center;
     background-repeat: no-repeat;
     text-align: center;

@@ -42,8 +42,8 @@ dialogctn {
     bottom: 0;
     --height: 2.2vw;
     background-image: var(--background);
-    --background: url("images/dialogbg.png");
-    --original-background: url("images/dialogbg.png");
+    --background: url("../images/dialogbg.webp");
+    --original-background: url("../images/dialogbg.webp");
     background-position: left bottom;
     background-size: contain;
     background-repeat: repeat-x;
@@ -96,7 +96,7 @@ linecontent * {
 linecontent final:after {
     display: inline-block;
     position: absolute;
-    background-image: url('images/lineend.png');
+    background-image: url('../images/lineend.webp');
     background-repeat: no-repeat;
     background-position: center;
     background-clip: padding-box;
@@ -214,7 +214,7 @@ sel {
     display: inline-block;
     position: relative;
     align-self: center;
-    background: url('images/selection.png');
+    background: url('../images/selection.webp');
     width: 50%;
     height: 3em;
     line-height: 3em;
