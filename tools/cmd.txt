@@ -1,0 +1,57 @@
+指令【csv文件，第一列 类型，第二列 参数1，第三列 参数2，第四列 参数3，第五列 参数4】
+    （Version                 脚本版本，就填1吧）
+    Ambience                播放背景音乐【参数1 音乐文件相对路径】
+    StopAmbience            停止背景音乐
+    CharacterOff            清除前景人物贴图
+    ChapterTitle            位于画面中央的大号文字【参数1 台词】
+    ChapterTitleOff         清除标题
+    DialogueOn              打开台词
+    DialogueOff             关闭台词
+    DialogueBgOn            显示台词背景
+    DialogueBgOff           隐藏台词背景
+    Jump                    跳转【参数1 行号】
+    Bg                      背景图【参数1 图片文件相对路径】
+    BgVideo                 背景视频【参数1 视频文件相对路径，参数2 是否循环，参数3 是否静音】
+    Wait                    等待【参数1 时长】
+    FadeIn                  从黑场淡入【参数1 颜色，参数2 时长】
+    FadeOut                 淡出到黑场【参数1 颜色，参数2 时长】
+    If                      控制流跳转【参数1 一个函数，参数2 行号】
+    Selection               选项，所有选项必须是连续的行，有多少选项就写多少行【参数1 台词，参数2 一个函数，选择这个选项后会执行这个函数】
+    Animation               播放动画，比如章节开头的动画【参数1 动画文件相对路径】
+    Line（默认类型）          台词【参数1 名字，参数2 台词，参数3 语音文件相对路径，参数4 人物贴图相对路径】
+
+数据类型
+    文件相对路径 字符串|空字符串。如果是空字符串表示继续播放或显示上一个
+    颜色 字符串rgba(r ,g ,b ,a)，其中rgb是0-255的整数，a是0-1的小数；字符串#RRGGBBAA；字符串rgb(r, g, b)；字符串保留颜色关键词，比如black。详见https://developer.mozilla.org/zh-CN/docs/Web/CSS/color
+    函数 javascript函数，你可以在中间设置一些节点来执行你自己的逻辑。
+    时长 正整数，单位毫秒
+    行号 自然数，从0开始
+    名字 字符串
+    台词 字符串
+    是否xx 布尔值true/false
+
+富文本支持
+    非标准HTML语法
+        1.<color=颜色></color>，颜色必须是标准css格式
+        2.<size=字号></size>，字号必须是标准css格式
+        3.<shake></shake>，震动特效
+    支持任何标准HTML语法，比如<span style="...">......</span>
+    注意，HTML渲染规定，多个空格会变成单个空格。如果需要多空格的话，需要用HTML富文本<p>标签或<span>标签等。
+    <p>行</p>
+    <br/>空行
+    <span>短语</span>
+    <b>粗体</b>
+    <i>斜体</i>
+
+
+选项的例子，先使用一个总是不会跳转的If创建一个全局变量，比如selected，然后再写选项，然后再用相同数量的If跳转
+If,function(){selected=0},0
+Selection,"选项1",function(){selected=1}
+Selection,"选项2",function(){selected=2}
+If,function(){return selected==1},23
+If,function(){return selected==2},44
+简单起见，就变成了
+Selection,"选项1",()=>{selected=1}
+Selection,"选项2",()=>{selected=2}
+If,()=>selected==1,23
+If,()=>selected==2,44

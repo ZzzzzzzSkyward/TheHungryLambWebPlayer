@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>The Hungry Lamb</title>
+  <link rel="stylesheet" type="text/css" href="styles/style.css">
+  <link rel="stylesheet" type="text/css" href="styles/scene.css">
+  <script type="text/javascript" src="scripts/api.js"></script>
+  <script type="text/javascript" src="scripts/mainpage.js"></script>
+  <script type="text/javascript" src="scripts/names.js"></script>
+  <script type="text/javascript" src="scripts/playpage.js"></script>
+  <svg id="soundicon" class="icon trans"
+    style="width: 1em;height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024"
+    version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1512">
+    <path
+      d="M260.256 356.576l204.288-163.968a32 32 0 0 1 52.032 24.96v610.432a32 32 0 0 1-51.968 24.992l-209.92-167.552H96a32 32 0 0 1-32-32v-264.864a32 32 0 0 1 32-32h164.256zM670.784 720.128a32 32 0 0 1-44.832-45.664 214.08 214.08 0 0 0 64.32-153.312 213.92 213.92 0 0 0-55.776-144.448 32 32 0 1 1 47.36-43.04 277.92 277.92 0 0 1 72.416 187.488 278.08 278.08 0 0 1-83.488 198.976zM822.912 858.88a32 32 0 1 1-45.888-44.608A419.008 419.008 0 0 0 896 521.152c0-108.704-41.376-210.848-114.432-288.384a32 32 0 0 1 46.592-43.872c84.16 89.28 131.84 207.04 131.84 332.256 0 127.84-49.76 247.904-137.088 337.728z"
+      fill="currentColor" p-id="1513"></path>
+  </svg>
+</head>
+
+<body>
+  <input type="file" id="fileInput" onchange="loadData();" style="visibility: invisible;">
+  <audio id="voice"></audio>
+  <audio id="bgm" autoplay loop></audio>
+  <div id="intro" style="display: none;">
+    <code>
+      <p>1. You can exit game play screen by pressing Esc, and enter it later.</p>
+      <p>2. But when you exit read screen, the content is cleared.</p>
+      <p>3. Press F12, open Console, type "ScriptLoader.config.DisplayBoth=true" to Enable Chinese Text.</p>
+      <p>4. There is difference in the positioning of characters, some NPC character images I can't find, and the
+        transition</p>
+      <p>effect, and no ambience sound.</p>
+      <p>5. Press arrow keys to navigate, or mouse click, or mouse wheel.</p>
+      <p>6. I didn't implement cross chapter jump feature, so there maybe a break between chapters.</p>
+      <p>7. Sometimes you want to jump, type "ScriptLoader.SetLine(999)" in the Console. But jump can lead to quirk
+        state.</p>
+      <p>8. The branch selection is not implemented.</p>
+      <p>9. To disable the typing effect, "ScriptLoader.config.DisableTyping=true"</p>
+    </code>
+  </div>
+  <script type="text/javascript">
+    document.addEventListener( "DOMContentLoaded", ( event ) => {
+      InitRouter();
+    } );
+
+    function InitRouter() {
+      let params = location.search
+      if ( params && params.length > 1 ) {
+        params = params.replace( /^[?]{1}/, '' ).split( "&" );
+        let p = {};
+        params.forEach( function ( x ) {
+          let y = x.split( "=" );
+          p[ y[ 0 ] ] = y[ 1 ];
+        } );
+        return SelectRouter( p );
+      }
+      return SelectRouter( {} );
+    }
+
+    function SelectRouter( params ) {
+      console.log( params );
+      let cmd = params.command;
+      let file = params.file;
+      if ( cmd === 'play' && file ) {
+        ScriptScreenStack( file );
+      } else {
+        MainScreenStack();
+      }
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,301 @@
+scene,
+bg,
+fg,
+ui,
+dialogctn,
+linectn,
+linetitle,
+linecontent,
+.bgimg char {
+    display: flex;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    left: 0;
+    top: 0;
+    margin: 0;
+    padding: 0;
+    font-family: "华文中宋", "Microsoft YaHei", Georgia, 'Times New Roman', SimSun, Arial;
+}
+
+.bgimg {
+    min-width: 100%;
+    width: unset;
+    height: unset;
+    min-height: 100%;
+    color: wheat;
+    text-shadow: 0 0 7px black;
+    object-fit: cover;
+    text-align: center;
+    line-height: 100vh;
+    font-size: 5em;
+}
+
+ui {
+    --linefinish: 0;
+}
+
+dialogctn {
+    height: 35%;
+    top: unset;
+    bottom: 0;
+    --height: 2.2vw;
+    background-image: var(--background);
+    --background: url("images/dialogbg.png");
+    --original-background: url("images/dialogbg.png");
+    background-position: left bottom;
+    background-size: contain;
+    background-repeat: repeat-x;
+}
+
+linectn {
+    min-height: var(--height);
+    --margin: calc(var(--height) * 2);
+    color: white;
+    transition-property: opacity;
+    transition-duration: 1s;
+    transition-timing-function: linear;
+    text-shadow: 0 0 4px black;
+    opacity: 1;
+    margin-left: 10%;
+    top: 25%;
+}
+
+dialoguectn.off,
+linectn.off {
+    opacity: 0;
+}
+
+linetitle {
+    padding: 0;
+    padding-right: var(--margin);
+    background-color: rgba(124, 124, 124, 0);
+    height: var(--height);
+    min-height: var(--height);
+    font-size: var(--height);
+    line-height: var(--height);
+    width: auto;
+    overflow: visible;
+}
+
+linecontent {
+    width: auto;
+    padding: 0;
+    padding-right: var(--margin);
+    font-size: calc(var(--height) *0.8);
+    top: calc(var(--height) * 1.5);
+    height: auto;
+    display: block;
+}
+
+linecontent * {
+    line-height: 1em;
+}
+
+linecontent final:after {
+    display: inline-block;
+    position: absolute;
+    background-image: url('images/lineend.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-clip: padding-box;
+    background-size: contain;
+    content: '';
+    height: var(--height);
+    aspect-ratio: 1;
+    transform: translateY(calc(-0.7 * var(--height)));
+}
+
+linecontent final {
+    display: inline-block;
+    position: relative;
+    overflow: visible;
+    aspect-ratio: 1;
+    opacity: var(--linefinish);
+}
+
+ui.hidden {
+    visibility: hidden;
+}
+
+ui.hiding {
+    opacity: 0;
+}
+
+ui.showing {
+    opacity: 1;
+}
+
+img.char {
+    align-items: center;
+    display: flex;
+    position: absolute;
+    max-height: 90%;
+    min-height: 50%;
+    transform: translateY(25%) scale(1.5);
+    transition-property: opacity;
+    transition-duration: 1s;
+    transition-timing-function: linear;
+    opacity: 1;
+}
+
+img.char.off {
+    opacity: 0;
+}
+
+fg {
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    color: wheat;
+    text-shadow: 0 0 7px black;
+}
+
+ui.linefinish {
+    --linefinish: 1;
+}
+
+div.fade,
+div.chaptertitle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity linear;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+}
+
+div.chaptertitle {
+    transition-timing-function: linear;
+    transition-duration: 1s;
+    transition-property: color, opacity;
+    color: var(--titlecolor);
+    font-size: 3em;
+    opacity: 1;
+    display: flex;
+    --titlecolor: white;
+    text-align: center;
+    align-items: center;
+    align-content: flex-start;
+    flex-wrap: nowrap;
+    justify-content: center;
+}
+
+div.fade.entering {
+    opacity: 1;
+}
+
+div.fade.exiting {
+    opacity: 0;
+}
+
+sel {
+    display: flex;
+    position: absolute;
+    width: 100%;
+    height: 50%;
+    align-self: center;
+    flex-direction: column;
+}
+
+.choice {
+    display: inline-block;
+    position: relative;
+    align-self: center;
+    background: url('images/selection.png');
+    width: 50%;
+    height: 3em;
+    line-height: 3em;
+    color: rgb(255 255 255);
+    text-align: center;
+    flex-direction: column;
+    background-blend-mode: lighten;
+    mix-blend-mode: normal;
+    text-shadow: 0 0 6px white;
+    background-origin: content-box;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding-top: 2%;
+}
+
+.choice:hover {
+    filter: brightness(1.1);
+    mix-blend-mode: normal;
+}
+
+@keyframes shake {
+    0% {
+        transform: translateX(0);
+    }
+
+    10% {
+        transform: translateX(-2px);
+    }
+
+    20% {
+        transform: translateY(3px);
+    }
+
+    30% {
+        transform: translateX(-2px);
+    }
+
+    40% {
+        transform: translateY(-3px);
+    }
+
+    50% {
+        transform: translateX(-1px);
+    }
+
+    60% {
+        transform: translateY(2px);
+    }
+
+    70% {
+        transform: translateX(-3px);
+    }
+
+    80% {
+        transform: translateY(1px);
+    }
+
+    90% {
+        transform: translateY(-2px);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+/* 自定义元素 <shake> 的样式 */
+shake {
+    display: inline-block;
+    animation: shake 0.4s cubic-bezier(0.41, -0.51, 0.55, 1.63) infinite
+        /* 设置动画持续时间和播放次数 */
+}
+
+.preloadasset {
+    opacity: 0.01;
+    width: 1px;
+    height: 1px;
+    display: block;
+    left: 0px;
+    top: 0px;
+    position: fixed;
+    pointer-events: none;
+    user-select: none;
+}

@@ -1,0 +1,488 @@
+[
+  {
+    "command": "Version",
+    "arg1": "1"
+  },
+  {
+    "command": "FadeOut",
+    "arg1": "black",
+    "arg2": "0"
+  },
+  {
+    "command": "Line",
+    "arg2": "作者：邂逅"
+  },
+  {
+    "command": "Bg",
+    "arg1": "mansui_dream_01.png"
+  },
+  {
+    "command": "FadeIn",
+    "arg1": "black",
+    "arg2": "2"
+  },
+  {
+    "command": "Wait",
+    "arg2": "500"
+  },
+  {
+    "command": "Line",
+    "arg1": "穗儿",
+    "arg2": "我梦到过一位婷婷淑女。"
+  },
+  {
+    "command": "Line",
+    "arg1": "穗儿",
+    "arg2": "她说，她是未来的我。"
+  },
+  {
+    "command": "Line",
+    "arg1": "穗儿",
+    "arg2": "我很好奇。"
+  },
+  {
+    "command": "Line",
+    "arg1": "穗儿",
+    "arg2": "我问了许多问题，但是梦醒的时候，我好像什么都记不清了。"
+  },
+  {
+    "command": "Line",
+    "arg1": "穗儿",
+    "arg2": "爹爹还没有回来，弟弟的身体更差了。"
+  },
+  {
+    "command": "Line",
+    "arg1": "穗儿",
+    "arg2": "我好饿。"
+  },
+  {
+    "command": "FadeOut",
+    "arg1": "black",
+    "arg2": "0"
+  },
+  {
+    "command": "Bg",
+    "arg1": "mansui_dream_02.png"
+  },
+  {
+    "command": "FadeIn",
+    "arg1": "black",
+    "arg2": "2000"
+  },
+  {
+    "command": "Wait",
+    "arg2": "500"
+  },
+  {
+    "command": "Line",
+    "arg1": "满穗",
+    "arg2": "在离开厨师爷爷的客栈，再次流浪的路上，我梦到了一个小女孩。"
+  },
+  {
+    "command": "Line",
+    "arg1": "满穗",
+    "arg2": "我看到带着波浪的麦田与斜阳倾洒着的金黄色。"
+  },
+  {
+    "command": "Line",
+    "arg1": "满穗",
+    "arg2": "这是我回忆里的画面。"
+  },
+  {
+    "command": "Line",
+    "arg1": "满穗",
+    "arg2": "我走向了无忧无虑的她。"
+  },
+  {
+    "command": "Line",
+    "arg1": "满穗",
+    "arg2": "我猜，她就是我。"
+  },
+  {
+    "command": "Line",
+    "arg1": "满穗",
+    "arg2": "[ 穗儿，你目所能及的一切都会失去。]"
+  },
+  {
+    "command": "Line",
+    "arg1": "满穗",
+    "arg2": "我决然地向那个自己吼道，像是告诫、像是发泄。"
+  },
+  {
+    "command": "Line",
+    "arg1": "穗儿",
+    "arg2": "[ 爹爹、娘、奶奶、弟弟，我的小猫，他们都会死吗？]"
+  },
+  {
+    "command": "Line",
+    "arg1": "满穗",
+    "arg2": "她哭泣，她不解。"
+  },
+  {
+    "command": "Line",
+    "arg1": "满穗",
+    "arg2": "是啊，我不知道为什么。"
+  },
+  {
+    "command": "Line",
+    "arg1": "满穗",
+    "arg2": "为什么你要承受饥饿、为什么你会失去亲人、为什么你必须流离失所。"
+  },
+  {
+    "command": "Line",
+    "arg1": "满穗",
+    "arg2": "或许，你不属于这片美好的麦田。"
+  },
+  {
+    "command": "FadeOut",
+    "arg1": "black",
+    "arg2": "0"
+  },
+  {
+    "command": "Bg",
+    "arg1": "mansui_dream_03.png"
+  },
+  {
+    "command": "FadeIn",
+    "arg1": "black",
+    "arg2": "2000"
+  },
+  {
+    "command": "Wait",
+    "arg2": "500"
+  },
+  {
+    "command": "Line",
+    "arg1": "满穗",
+    "arg2": "知道了仇人是谁后，我再次梦到了她。"
+  },
+  {
+    "command": "Line",
+    "arg1": "满穗",
+    "arg2": "在枯槁的平原上，立在几近干涸的、泥泞的、肮脏的河床上。"
+  },
+  {
+    "command": "Line",
+    "arg1": "满穗",
+    "arg2": "眼前所见尽是干枯与死亡。"
+  },
+  {
+    "command": "Line",
+    "arg1": "满穗",
+    "arg2": "感受着剜心剔骨的恐惧、孤独与仇恨。"
+  },
+  {
+    "command": "Line",
+    "arg1": "满穗",
+    "arg2": "从肚子开始向上翻腾着的尖锐刺痛、沉重的眼皮···"
+  },
+  {
+    "command": "Line",
+    "arg1": "满穗",
+    "arg2": "麻木的双腿与早已溃烂不堪的意志。"
+  },
+  {
+    "command": "Line",
+    "arg1": "满穗",
+    "arg2": "她难过，我也痛苦。"
+  },
+  {
+    "command": "Line",
+    "arg1": "满穗",
+    "arg2": "她在哭，我也流泪。"
+  },
+  {
+    "command": "Line",
+    "arg1": "满穗",
+    "arg2": "她寻找，我也在搜寻。"
+  },
+  {
+    "command": "Line",
+    "arg1": "满穗",
+    "arg2": "我知道，她就是我。"
+  },
+  {
+    "command": "Line",
+    "arg1": "满穗",
+    "arg2": "她想走向我，但是我向后退去。"
+  },
+  {
+    "command": "Line",
+    "arg1": "满穗",
+    "arg2": "现在，我只需要复仇就足够了。"
+  },
+  {
+    "command": "FadeOut",
+    "arg1": "black",
+    "arg2": "0"
+  },
+  {
+    "command": "Bg",
+    "arg1": "mansui_dream_04.png"
+  },
+  {
+    "command": "FadeIn",
+    "arg1": "black",
+    "arg2": "2000"
+  },
+  {
+    "command": "Wait",
+    "arg2": "500"
+  },
+  {
+    "command": "Line",
+    "arg1": "满穗",
+    "arg2": "在前往洛阳的马车上，我梦到了她。"
+  },
+  {
+    "command": "Line",
+    "arg1": "满穗",
+    "arg2": "她大喊，她询问，她疑惑。"
+  },
+  {
+    "command": "Line",
+    "arg1": "满穗",
+    "arg2": "我知道，那是过去的我。"
+  },
+  {
+    "command": "Line",
+    "arg1": "穗儿",
+    "arg2": "[ 为什么不杀了他？为爹爹，娘，弟弟报仇！]"
+  },
+  {
+    "command": "Line",
+    "arg1": "满穗",
+    "arg2": "是啊，为什么不呢？"
+  },
+  {
+    "command": "Line",
+    "arg1": "满穗",
+    "arg2": "我低头，我看到了不知真相的他，为我的生日所穿上的那双新鞋子。"
+  },
+  {
+    "command": "Line",
+    "arg1": "满穗",
+    "arg2": "浅蓝色的、有着亮银色牡丹的鞋。"
+  },
+  {
+    "command": "Line",
+    "arg1": "满穗",
+    "arg2": "我可能还有很多的借口"
+  },
+  {
+    "command": "Line",
+    "arg1": "满穗",
+    "arg2": "我想观察他，我想让剩下的孩子们有个好去处。"
+  },
+  {
+    "command": "Line",
+    "arg1": "满穗",
+    "arg2": "我还有问题想问他"
+  },
+  {
+    "command": "Line",
+    "arg1": "满穗",
+    "arg2": "我想让他感受哪怕一丝一毫我过去的痛苦"
+  },
+  {
+    "command": "Line",
+    "arg1": "满穗",
+    "arg2": "想听他亲口认下自己的罪过。"
+  },
+  {
+    "command": "FadeOut",
+    "arg1": "black",
+    "arg2": "0"
+  },
+  {
+    "command": "Bg",
+    "arg1": "mansui_dream_01.png"
+  },
+  {
+    "command": "Line",
+    "arg1": "满穗",
+    "arg2": "良，之前杀了这么多人，你后悔吗？"
+  },
+  {
+    "command": "Line",
+    "arg1": "满穗",
+    "arg2": "如果我不见了，你又会难过吗？"
+  },
+  {
+    "command": "FadeIn",
+    "arg1": "black",
+    "arg2": "2000"
+  },
+  {
+    "command": "Wait",
+    "arg2": "500"
+  },
+  {
+    "command": "Line",
+    "arg1": "满穗",
+    "arg2": "我很久、很久没有再梦到过那个小女孩了。"
+  },
+  {
+    "command": "Line",
+    "arg1": "满穗",
+    "arg2": "上一次，或许在数年之前，我梦到了小时候挨饿的自己。"
+  },
+  {
+    "command": "Line",
+    "arg1": "满穗",
+    "arg2": "我抱着她，抚摸着她的头"
+  },
+  {
+    "command": "Line",
+    "arg1": "满穗",
+    "arg2": "讲过许多许多我这些年的见闻"
+  },
+  {
+    "command": "FadeOut",
+    "arg1": "black",
+    "arg2": "0"
+  },
+  {
+    "command": "Bg",
+    "arg1": "mansui_dream_05.png"
+  },
+  {
+    "command": "Line",
+    "arg1": "满穗",
+    "arg2": "哄她再度入睡。"
+  },
+  {
+    "command": "FadeIn",
+    "arg1": "black",
+    "arg2": "2000"
+  },
+  {
+    "command": "Wait",
+    "arg2": "500"
+  },
+  {
+    "command": "Line",
+    "arg1": "满穗",
+    "arg2": "而今夜我再次看到了她。"
+  },
+  {
+    "command": "Line",
+    "arg1": "满穗",
+    "arg2": "我记得这双眸子"
+  },
+  {
+    "command": "Line",
+    "arg1": "满穗",
+    "arg2": "这双眸子里有着吞噬一切的，将仇人设为自己最终目标的憎恨。"
+  },
+  {
+    "command": "Line",
+    "arg1": "满穗",
+    "arg2": "我记得这副躯壳"
+  },
+  {
+    "command": "Line",
+    "arg1": "满穗",
+    "arg2": "苟延残喘、戴满了虚假的面具。"
+  },
+  {
+    "command": "Line",
+    "arg1": "满穗",
+    "arg2": "我很清楚，因为那就是曾经的我。"
+  },
+  {
+    "command": "Line",
+    "arg1": "满穗",
+    "arg2": "仇恨占据了内心，但困惑又纠结"
+  },
+  {
+    "command": "Line",
+    "arg1": "满穗",
+    "arg2": "因为那个仇人因你而转变为了善人、良人。"
+  },
+  {
+    "command": "Line",
+    "arg1": "满穗",
+    "arg2": "我蹲下，而她看向我。"
+  },
+  {
+    "command": "Line",
+    "arg1": "满穗",
+    "arg2": "[不要怕，穗儿，我就是你，我在很遥远很遥远的未来。]"
+  },
+  {
+    "command": "Line",
+    "arg1": "穗儿",
+    "arg2": "[ 是吗...很遥远很遥远？]"
+  },
+  {
+    "command": "Line",
+    "arg1": "满穗",
+    "arg2": "她的声音有点沙哑"
+  },
+  {
+    "command": "Line",
+    "arg1": "满穗",
+    "arg2": "她在旷野里独自行走了太久"
+  },
+  {
+    "command": "Line",
+    "arg1": "满穗",
+    "arg2": "感受活着所带来的无穷无尽的苦难。"
+  },
+  {
+    "command": "Line",
+    "arg1": "满穗",
+    "arg2": "[很遥远很遥远，穗儿。到那时，你身边会有很多的朋友···]"
+  },
+  {
+    "command": "Line",
+    "arg1": "满穗",
+    "arg2": "[你失去的也必将再寻到···]"
+  },
+  {
+    "command": "Line",
+    "arg1": "满穗",
+    "arg2": "[你会见到你喜欢的良人、你们会结婚生子、你们会看到安居乐业的人们···]"
+  },
+  {
+    "command": "Line",
+    "arg1": "满穗",
+    "arg2": "[以及，你见过的，一望无际的麦田。]"
+  },
+  {
+    "command": "Line",
+    "arg1": "穗儿",
+    "arg2": "[那，杀害我们的爹爹、小猫、奶奶、娘、弟弟的凶手，我们的仇人，我···要杀了他嘛？]"
+  },
+  {
+    "command": "Line",
+    "arg1": "满穗",
+    "arg2": "她抬头看向我，向我问出了我也曾困惑过的问题。"
+  },
+  {
+    "command": "Line",
+    "arg1": "满穗",
+    "arg2": "不过我早有了答案。"
+  },
+  {
+    "command": "Line",
+    "arg1": "满穗",
+    "arg2": "[杀掉一个人很简单···]"
+  },
+  {
+    "command": "Line",
+    "arg1": "满穗",
+    "arg2": "[不过···很久以后，你可能会后悔。]"
+  },
+  {
+    "command": "Line",
+    "arg1": "满穗",
+    "arg2": "[我们就杀掉他的一部分吧，穗儿]"
+  },
+  {
+    "command": "Line",
+    "arg1": "满穗",
+    "arg2": "[我们一起去杀死他心里的那头狼。]"
+  }
+]

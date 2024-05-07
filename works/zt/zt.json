@@ -1,0 +1,223 @@
+[
+  {
+    "command": "Version",
+    "arg1": "1"
+  },
+  {
+    "command": "FadeOut",
+    "arg1": "black",
+    "arg2": "1000"
+  },
+  {
+    "command": "Bg",
+    "arg1": "Texture2D/澡堂.jpg"
+  },
+  {
+    "command": "FadeIn",
+    "arg1": "black",
+    "arg2": "1000"
+  },
+  {
+    "command": "Line",
+    "arg2": "她用了将近一个时辰的时间，放水、打扫、添柴、加水。"
+  },
+  {
+    "command": "Line",
+    "arg2": "此时，她已经忙得汗流浃背，脸颊通红，终于是快忙完了。"
+  },
+  {
+    "command": "Line",
+    "arg1": "满穗",
+    "arg2": "[哈啊……哈啊……良爷，我好累。]",
+    "arg3": "AudioClip/穗-155.m4a"
+  },
+  {
+    "command": "Line",
+    "arg2": "满穗站在浴室里，双目迷离，好像没了力气。"
+  },
+  {
+    "command": "Line",
+    "arg2": "她的双腿因为累而轻微发抖，身上也都是汗。"
+  },
+  {
+    "command": "Line",
+    "arg2": "嗯……我看她这幅样子，也不太生她的气了。"
+  },
+  {
+    "command": "Line",
+    "arg2": "虽说，我帮她跑腿拿了不少东西，但她也干了那么久的活，算扯平了。"
+  },
+  {
+    "command": "Line",
+    "arg1": "良",
+    "arg2": "[行，就这样吧。]"
+  },
+  {
+    "command": "Line",
+    "arg1": "满穗",
+    "arg2": "[那良爷把我关回去吧？]",
+    "arg3": "AudioClip/穗-156.m4a"
+  },
+  {
+    "command": "Line",
+    "arg1": "良",
+    "arg2": "[不行，你现在一身汗，还是和我一起再洗一遍吧。]"
+  },
+  {
+    "command": "Line",
+    "arg1": "满穗",
+    "arg2": "[啊？良爷真要陪着洗啊？我还以为你只是为了捉弄我随便说说。]",
+    "arg3": "AudioClip/穗-157.m4a"
+  },
+  {
+    "command": "Line",
+    "arg1": "良",
+    "arg2": "[我一向说一不二……而且，你若是这样回去，先不说感冒，一身汗臭味，其他小羊大概会嫌弃你。]"
+  },
+  {
+    "command": "Line",
+    "arg1": "满穗",
+    "arg2": "[啊？我身上有汗臭味吗？]",
+    "arg3": "AudioClip/穗-158.m4a"
+  },
+  {
+    "command": "Line",
+    "arg1": "良",
+    "arg2": "[有。]"
+  },
+  {
+    "command": "Line",
+    "arg2": "其实没有。"
+  },
+  {
+    "command": "Line",
+    "arg2": "我没闻到。"
+  },
+  {
+    "command": "Line",
+    "arg1": "良",
+    "arg2": "[……]"
+  },
+  {
+    "command": "Line"
+  },
+  {
+    "command": "Line"
+  },
+  {
+    "command": "Line",
+    "arg2": "满穗听了我的话后，算是默许了我的提议。"
+  },
+  {
+    "command": "Line",
+    "arg2": "她走到木门前，双手拽住两边，关上了木门。"
+  },
+  {
+    "command": "Line",
+    "arg2": "然后，她背对着我，手放在客栈那件宽衫的腰带上，手指伸进腰带的结里转了一圈。"
+  },
+  {
+    "command": "Line",
+    "arg2": "腰带解开，她的衣衫也朝两边敞开。"
+  },
+  {
+    "command": "Line",
+    "arg2": "紧接着，只听“哗啦”一声，她像是蜕皮的蛇，衣服先顺着窄小的肩膀滑落下来，再整个掉落下来，最后露出了她整个光溜溜的身子。"
+  },
+  {
+    "command": "Line"
+  },
+  {
+    "command": "Line",
+    "arg1": "良",
+    "arg2": "[……]"
+  },
+  {
+    "command": "FadeOut",
+    "arg1": "rgba(0, 0, 0, 0.3)",
+    "arg2": "1000"
+  },
+  {
+    "command": "Line",
+    "arg2": "我在她衣服完全落下来之前，还是忍不住别过了目光。"
+  },
+  {
+    "command": "Line",
+    "arg2": "但是，眼角的余光里，还是能注意到她那瘦小的身躯。"
+  },
+  {
+    "command": "Line",
+    "arg2": "她的肌肤没那么白，呈小麦色，隐约透着一些粉色。"
+  },
+  {
+    "command": "Line",
+    "arg2": "她太瘦了，皮包着骨，能明显看出脊骨、腿骨和肩胛骨的轮廓。"
+  },
+  {
+    "command": "Line",
+    "arg2": "她因为刚忙活了很久，身上都是汗。"
+  },
+  {
+    "command": "Line",
+    "arg2": "汗珠在脊骨两侧零星分布着，被澡堂里微弱的光芒照得发亮。"
+  },
+  {
+    "command": "Line",
+    "arg2": "这小崽子唯一看起来有肉的地方，大概就只有屁股吧。"
+  },
+  {
+    "command": "Line",
+    "arg2": "话说，她上次脱个裙裤，都扭扭捏捏地不想脱。"
+  },
+  {
+    "command": "Line",
+    "arg2": "这次为何能如此自然地一下把衣服全脱了？"
+  },
+  {
+    "command": "Line",
+    "arg2": "这难道就是一回生二回熟？"
+  },
+  {
+    "command": "FadeIn",
+    "arg1": "rgba(0, 0, 0, 0.3)",
+    "arg2": "1000"
+  },
+  {
+    "command": "Line",
+    "arg1": "满穗",
+    "arg2": "[良爷，我脱完了……我是跟你一起在水池里洗？还是在木桶里洗？]",
+    "arg3": "AudioClip/穗-159.m4a"
+  },
+  {
+    "command": "Line",
+    "arg1": "良",
+    "arg2": "[……]"
+  },
+  {
+    "command": "Line",
+    "arg1": "满穗",
+    "arg2": "[……]"
+  },
+  {
+    "command": "Line",
+    "arg1": "良",
+    "arg2": "[你在木桶里洗吧。]"
+  },
+  {
+    "command": "Line",
+    "arg1": "满穗",
+    "arg2": "[好。]",
+    "arg3": "AudioClip/穗-160.m4a"
+  },
+  {
+    "command": "FadeOut",
+    "arg1": "black",
+    "arg2": "1000"
+  },
+  {
+    "command": "Line"
+  },
+  {
+    "command": "Line"
+  }
+]

@@ -1,0 +1,654 @@
+[
+  {
+    "command": "Version",
+    "arg1": "1"
+  },
+  {
+    "command": "Ambience",
+    "arg1": "audio/明末千里行.m4a"
+  },
+  {
+    "command": "FadeOut",
+    "arg1": "black",
+    "arg2": "1000"
+  },
+  {
+    "command": "Bg",
+    "arg1": "Texture2D/城内湖.webp"
+  },
+  {
+    "command": "ChapterTitle",
+    "arg1": "<span style=\"text-shadow:0 0 12px #00000085\">假如满穗加入了闯军……</span>\n<span style=\"text-shadow:0 0 12px #00000085;transform:scale(0.5)\">莫莫莫里哀</span>\n<span style=\"transform: scale(0.5);text-shadow:0 0 12px #00000085\">www.bilibili.com/video/BV1om411y7UN</span>"
+  },
+  {
+    "command": "FadeIn",
+    "arg1": "black",
+    "arg2": "1000"
+  },
+  {
+    "command": "ChapterTitleOff"
+  },
+  {
+    "command": "Line",
+    "arg1": "满穗",
+    "arg2": "[我怎么知道你跟了反军能还债？搞不好你会杀更多无辜的人让原本的债越积越多。]",
+    "arg3": "AudioClip/穗-563.m4a",
+    "arg4": "Texture2D/满穗/愠怒a.webp"
+  },
+  {
+    "command": "Line",
+    "arg1": "良",
+    "arg2": "[…]"
+  },
+  {
+    "command": "FadeOut",
+    "arg1": "rgba(0, 0, 0, 0.3)",
+    "arg2": "0"
+  },
+  {
+    "command": "Line",
+    "arg2": "确实，她说得对。"
+  },
+  {
+    "command": "Line",
+    "arg2": "反军本就不是善类，又怎能指望一个有罪之人加入后能改邪归正呢？"
+  },
+  {
+    "command": "Line",
+    "arg2": "除非有一支与众不同的反军，有一个与众不同的人能去领导它。"
+  },
+  {
+    "command": "Line",
+    "arg2": "等等，这么说来…也许我知道该怎么做了。"
+  },
+  {
+    "command": "FadeIn",
+    "arg1": "rgba(0, 0, 0, 0.3)",
+    "arg2": "0"
+  },
+  {
+    "command": "Line",
+    "arg1": "良",
+    "arg2": "[小崽子，你记不记得我们当初在解州时遇到的那支反军？]",
+    "arg4": "Texture2D/满穗/通常a.webp"
+  },
+  {
+    "command": "Line",
+    "arg1": "满穗",
+    "arg2": "[记得，我们还给他们演过戏。]",
+    "arg3": "AudioClip/穗-564.m4a",
+    "arg4": "Texture2D/满穗/通常.webp"
+  },
+  {
+    "command": "Line",
+    "arg1": "良",
+    "arg2": "[嗯……我记得那支反军的旗帜上写着一个“闯”字，大概是叫“闯军”吧。]"
+  },
+  {
+    "command": "Line",
+    "arg1": "良",
+    "arg2": "[我看那闯军的军纪还算不错，他们进了李家村后对村民秋毫无犯，领头的很正派，为人仗义，很守信用。]"
+  },
+  {
+    "command": "Line",
+    "arg1": "满穗",
+    "arg2": "[嗯……他们当时说话算话，演完影子戏后便放了我们，确实不像是土匪的做派。]",
+    "arg3": "AudioClip/穗-565.m4a"
+  },
+  {
+    "command": "Line",
+    "arg1": "良",
+    "arg2": "[那支闯军重义守信，武德充沛，所缺者不过是一个军师而已。]"
+  },
+  {
+    "command": "Line",
+    "arg1": "良",
+    "arg2": "[你冰雪聪明，这一路上我们能屡次脱险多亏有你，你去给他们当<span style=\"color:rgb(200, 0, 0);font-weight:bold\">军师</span>，定能闯出一片天来。]"
+  },
+  {
+    "command": "Line",
+    "arg1": "良",
+    "arg2": "[等到闯军攻破洛阳，杀了豚妖，你再来取我的性命。]"
+  },
+  {
+    "command": "Line",
+    "arg1": "良",
+    "arg2": "[这样，便能够一次解决掉你的两个仇人。]"
+  },
+  {
+    "command": "Line",
+    "arg2": "她低下头，抿着下唇沉思了一会儿。",
+    "arg4": "Texture2D/满穗/思考.webp"
+  },
+  {
+    "command": "Line",
+    "arg2": "许久后，她仿佛下定了什么决心，重新开口说话。"
+  },
+  {
+    "command": "Line",
+    "arg1": "满穗",
+    "arg2": "[行，良爷，我认可你的想法。]",
+    "arg3": "AudioClip/穗-572.m4a",
+    "arg4": "Texture2D/满穗/通常.webp"
+  },
+  {
+    "command": "Line",
+    "arg1": "满穗",
+    "arg2": "[我若是投了那“闯军”，有一天能跟着他们打到洛阳，杀了豚妖，我可暂时留你性命。]",
+    "arg3": "穗-5732.m4a"
+  },
+  {
+    "command": "Line",
+    "arg1": "满穗",
+    "arg2": "[不过，你不要忘了……我给你的命，只是暂借于你的！]",
+    "arg3": "AudioClip/穗-575.m4a",
+    "arg4": "Texture2D/满穗/警告a.webp"
+  },
+  {
+    "command": "Line",
+    "arg1": "满穗",
+    "arg2": "[等到洛阳城破、豚妖身死的那一天，我一定会来找你的。]",
+    "arg3": "AudioClip/穗-576.m4a",
+    "arg4": "Texture2D/满穗/愠怒a.webp"
+  },
+  {
+    "command": "Line",
+    "arg1": "满穗",
+    "arg2": "[那时，我一定会来取你的性命。]",
+    "arg3": "AudioClip/穗-577.m4a",
+    "arg4": "Texture2D/满穗/愠怒.webp"
+  },
+  {
+    "command": "Line",
+    "arg2": "她咬着唇、一字一句地对我说道。"
+  },
+  {
+    "command": "CharacterOff"
+  },
+  {
+    "command": "Line",
+    "arg2": "我欣慰于她能接受我赎罪的方案，欣慰于她愿意重新叫我“良爷”。"
+  },
+  {
+    "command": "Line",
+    "arg2": "她说等到豚妖身死之时再来杀我，我也能接受。"
+  },
+  {
+    "command": "Line",
+    "arg2": "……"
+  },
+  {
+    "command": "FadeOut",
+    "arg1": "black",
+    "arg2": "500"
+  },
+  {
+    "command": "FadeIn",
+    "arg1": "black",
+    "arg2": "500"
+  },
+  {
+    "command": "Line",
+    "arg2": "这之后，我们又在湖边坐了一会儿。"
+  },
+  {
+    "command": "Line",
+    "arg2": "时间缓慢流逝着，湖边的风逐渐将我们湿透的衣衫吹干了，天色也渐渐暗下来，快到黄昏了。"
+  },
+  {
+    "command": "Line",
+    "arg2": "我们无意义地坐着，很久都没有说话。"
+  },
+  {
+    "command": "Line",
+    "arg2": "终于，在天色完全暗下来之前，她站起身，准备向我道别了。"
+  },
+  {
+    "command": "Line",
+    "arg2": "我也站起身，在腰带里翻了翻。"
+  },
+  {
+    "command": "Line",
+    "arg1": "良",
+    "arg2": "[我给你一些银子，你收着吧，路上别缺钱花。]",
+    "arg4": "Texture2D/满穗/脸红a.webp"
+  },
+  {
+    "command": "Line",
+    "arg1": "满穗",
+    "arg2": "[嗯。]",
+    "arg3": "AudioClip/穗-591.m4a",
+    "arg4": "Texture2D/满穗/脸红.webp"
+  },
+  {
+    "command": "Line",
+    "arg2": "我拿出了一些碎银，放在了她旁边，大概够她去找闯军了。"
+  },
+  {
+    "command": "Line",
+    "arg2": "[走了啊。]"
+  },
+  {
+    "command": "Line",
+    "arg1": "满穗",
+    "arg2": "[……]"
+  },
+  {
+    "command": "CharacterOff"
+  },
+  {
+    "command": "Line",
+    "arg2": "我戴上了斗笠，朝远方走去。"
+  },
+  {
+    "command": "Line",
+    "arg1": "良",
+    "arg2": "[……]"
+  },
+  {
+    "command": "Line",
+    "arg2": "直到最后，我还是没有勇气提议让她和我一起走。"
+  },
+  {
+    "command": "Line",
+    "arg2": "当然，我也知道她一定不会和我一起走的。"
+  },
+  {
+    "command": "Line",
+    "arg2": "我没有她的聪明才智，去了也只会连累她。"
+  },
+  {
+    "command": "Line",
+    "arg2": "……"
+  },
+  {
+    "command": "Line",
+    "arg2": "五年后、十年后、十五年后……"
+  },
+  {
+    "command": "Line",
+    "arg2": "我们真的能再见面吗？"
+  },
+  {
+    "command": "FadeOut",
+    "arg1": "black",
+    "arg2": "500"
+  },
+  {
+    "command": "StopAmbience"
+  },
+  {
+    "command": "Bg",
+    "arg1": "Texture2D/天空黄昏.webp"
+  },
+  {
+    "command": "FadeIn",
+    "arg1": "black",
+    "arg2": "500"
+  },
+  {
+    "command": "Line",
+    "arg2": "这之后的许多年，我再也没有离开过洛阳。"
+  },
+  {
+    "command": "FadeOut",
+    "arg1": "black",
+    "arg2": "500"
+  },
+  {
+    "command": "ChapterTitle",
+    "arg1": "九年后",
+    "arg2": "white"
+  },
+  {
+    "command": "ChapterTitleOff"
+  },
+  {
+    "command": "Bg",
+    "arg1": "Texture2D/城破.webp"
+  },
+  {
+    "command": "Ambience",
+    "arg1": "audio/闯王行.m4a"
+  },
+  {
+    "command": "FadeIn",
+    "arg1": "black",
+    "arg2": "1000"
+  },
+  {
+    "command": "Line",
+    "arg2": "……"
+  },
+  {
+    "command": "Line",
+    "arg2": "“杀牛羊，备酒浆，开了城门迎闯娘！”"
+  },
+  {
+    "command": "Line",
+    "arg2": "“开城门，迎闯娘，闯娘来了不纳粮！”"
+  },
+  {
+    "command": "Line",
+    "arg2": "“迎闯娘、不纳粮！”"
+  },
+  {
+    "command": "Line",
+    "arg2": "“迎闯娘、不纳粮！”"
+  },
+  {
+    "command": "Line",
+    "arg2": "洛阳城北门大开，百姓高声呼喊，迎接着闯军入城。"
+  },
+  {
+    "command": "Line",
+    "arg2": "闯军的兵马整齐地穿过城门，走在洛阳的大道上。"
+  },
+  {
+    "command": "Line",
+    "arg2": "我站在人群之中张望着，那“闯娘”的旗帜格外显眼。"
+  },
+  {
+    "command": "Line",
+    "arg2": "……"
+  },
+  {
+    "command": "FadeOut",
+    "arg1": "black",
+    "arg2": "1000"
+  },
+  {
+    "command": "Bg",
+    "arg1": "Texture2D/天空阴.webp"
+  },
+  {
+    "command": "FadeIn",
+    "arg1": "black",
+    "arg2": "1000"
+  },
+  {
+    "command": "Line",
+    "arg2": "崇祯十四年，闯军攻下了洛阳。"
+  },
+  {
+    "command": "Line",
+    "arg2": "距离满穗离开洛阳，已过了九年之久。"
+  },
+  {
+    "command": "Line",
+    "arg2": "这九年发生了太多的事。"
+  },
+  {
+    "command": "Line",
+    "arg2": "我还记得，满穗是在崇祯五年投的闯王。"
+  },
+  {
+    "command": "Line",
+    "arg2": "那时，闯军的首领还不是闯娘，而是闯将。"
+  },
+  {
+    "command": "Line",
+    "arg2": "九年以来，听到的关于闯军的消息很多，我也越来越相信他们的领袖有着“天命”。"
+  },
+  {
+    "command": "Line",
+    "arg2": "崇祯九年，闯军与其他反军汇合，可没过多久就被官兵驱赶，逃亡数百里。"
+  },
+  {
+    "command": "Line",
+    "arg2": "当他们正要被剿灭殆尽之时，却奇迹般地以少胜多，成功杀出重围。"
+  },
+  {
+    "command": "Line",
+    "arg2": "那一年，李闯将战死，他的一个部下继承了他的名号，人称“闯娘”。"
+  },
+  {
+    "command": "Line",
+    "arg2": "崇祯十二年，中原和当初的陕地一样，爆发了连年灾荒，据说有半数的人因饥饿而死。"
+  },
+  {
+    "command": "Line",
+    "arg2": "这一路上，闯娘带领闯军持续收留饥民，给饥民开仓放粮。无数饥民因此被吸引，人越聚越多。"
+  },
+  {
+    "command": "Line",
+    "arg2": "一千、三千、一万、五万、十万。闯娘渐渐聚集了十万之众，杀到了洛阳。"
+  },
+  {
+    "command": "StopAmbience"
+  },
+  {
+    "command": "FadeOut",
+    "arg1": "black",
+    "arg2": "1000"
+  },
+  {
+    "command": "FadeIn",
+    "arg1": "black",
+    "arg2": "1000"
+  },
+  {
+    "command": "Line",
+    "arg2": "此时，她正骑着马，走在队伍的正前方。"
+  },
+  {
+    "command": "Line",
+    "arg2": "面对百姓们的欢呼，她回首一笑，英姿飒爽。"
+  },
+  {
+    "command": "Bg",
+    "arg1": "QQ图片20240506193735.webp"
+  },
+  {
+    "command": "Line"
+  },
+  {
+    "command": "Ambience",
+    "arg1": "audio/明末-良穗相遇.m4a"
+  },
+  {
+    "command": "Line",
+    "arg2": "她看起来竟然才二十出头的样子。"
+  },
+  {
+    "command": "Line",
+    "arg2": "体型瘦弱，身披红色斗篷，腰间佩剑。"
+  },
+  {
+    "command": "Line",
+    "arg2": "黑色扎辫短发，深蓝色的眼瞳里既有着坚毅，又似乎带着哀伤。"
+  },
+  {
+    "command": "Line",
+    "arg2": "为什么会有种熟悉感……"
+  },
+  {
+    "command": "DialogueOff",
+    "arg2": "   "
+  },
+  {
+    "command": "Bg",
+    "arg1": "Texture2D\\CG2-1.webp"
+  },
+  {
+    "command": "Line",
+    "arg2": " "
+  },
+  {
+    "command": "Bg",
+    "arg1": "Texture2D\\CG2-2.webp"
+  },
+  {
+    "command": "Line",
+    "arg2": " "
+  },
+  {
+    "command": "Bg",
+    "arg1": "Texture2D\\CG4-1b.webp"
+  },
+  {
+    "command": "Line",
+    "arg2": " "
+  },
+  {
+    "command": "Bg",
+    "arg1": "Texture2D\\泡澡思考.webp"
+  },
+  {
+    "command": "Line",
+    "arg2": " "
+  },
+  {
+    "command": "Bg",
+    "arg1": "Texture2D\\CG9-2a.webp"
+  },
+  {
+    "command": "Line",
+    "arg2": " "
+  },
+  {
+    "command": "BgVideo",
+    "arg1": "video\\满穗烟花V4.mp4"
+  },
+  {
+    "command": "Line",
+    "arg2": " "
+  },
+  {
+    "command": "FadeOut",
+    "arg1": "black",
+    "arg2": "1000",
+    "arg4": "Texture2D/满穗/通常.webp"
+  },
+  {
+    "command": "DialogueOn"
+  },
+  {
+    "command": "Bg",
+    "arg1": "Texture2D/城破.webp"
+  },
+  {
+    "command": "FadeIn",
+    "arg1": "black",
+    "arg2": "1000"
+  },
+  {
+    "command": "Line",
+    "arg2": "当年的小崽子，长大了啊。"
+  },
+  {
+    "command": "Line",
+    "arg2": "你果然没有负约，那我，也该遵守约定了。"
+  },
+  {
+    "command": "Line",
+    "arg2": "满穗——满穗——"
+  },
+  {
+    "command": "Line",
+    "arg2": "她在第二声后回头。"
+  },
+  {
+    "command": "Line",
+    "arg2": " "
+  },
+  {
+    "command": "FadeOut",
+    "arg1": "black",
+    "arg2": "1000"
+  },
+  {
+    "command": "DialogueOn"
+  },
+  {
+    "command": "StopAmbience"
+  },
+  {
+    "command": "Line",
+    "arg2": "完。"
+  },
+  {
+    "command": "DialogueOff"
+  },
+  {
+    "command": "Line"
+  },
+  {
+    "command": "Line"
+  },
+  {
+    "command": "Line"
+  },
+  {
+    "command": "Line"
+  },
+  {
+    "command": "Line"
+  },
+  {
+    "command": "Line"
+  },
+  {
+    "command": "Line"
+  },
+  {
+    "command": "Line"
+  },
+  {
+    "command": "Line"
+  },
+  {
+    "command": "Line"
+  },
+  {
+    "command": "Line"
+  },
+  {
+    "command": "Line"
+  },
+  {
+    "command": "Line"
+  },
+  {
+    "command": "Line"
+  },
+  {
+    "command": "Line"
+  },
+  {
+    "command": "Line"
+  },
+  {
+    "command": "Line"
+  },
+  {
+    "command": "Line"
+  },
+  {
+    "command": "Line"
+  },
+  {
+    "command": "Line"
+  },
+  {
+    "command": "Line"
+  },
+  {
+    "command": "Line"
+  },
+  {
+    "command": "Line"
+  },
+  {
+    "command": "Line"
+  },
+  {
+    "command": "Line"
+  },
+  {
+    "command": "Line"
+  },
+  {
+    "command": "Line"
+  }
+]
