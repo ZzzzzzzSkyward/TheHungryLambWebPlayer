@@ -118,7 +118,7 @@ function BG() {
     AddCtn();
     let img = Create( "div", "backgroundimg" );
     Append( img, spinectn );
-    img.style.backgroundImage = 'url("images/封面.png")';
+    img.style.backgroundImage = 'url("images/封面.webp")';
     window.bgimg = img;
     return img;
 }
@@ -127,7 +127,7 @@ function LOGO() {
     AddCtn();
     let logo = Create( "div", "logo" );
     Append( logo, spinectn );
-    logo.style.backgroundImage = 'url("images/logoZH.png")';
+    logo.style.backgroundImage = 'url("images/logoZH.webp")';
     window.logo = logo;
     return logo;
 }
@@ -143,7 +143,7 @@ function opening() {
     let opening = Create( "div", "opening" );
     Append( openingctn, spinectn );
     Append( opening, openingctn );
-    opening.style.backgroundImage = 'url("images/logo.png")';
+    opening.style.backgroundImage = 'url("images/logo.webp")';
     window.opening = opening;
     let begin = new Date();
     let Fade = function ( pct ) {
