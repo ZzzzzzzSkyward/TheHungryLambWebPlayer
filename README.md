@@ -1,4 +1,4 @@
-# 《饿殍：明末千里行》脚本播放器
+# 《饿殍：明末千里行》脚本播放器 The Hungry Lamb Script Web Player
 
 ## Demo
 
