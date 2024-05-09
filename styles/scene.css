@@ -87,6 +87,7 @@ linecontent {
     top: calc(var(--height) * 1.5);
     height: auto;
     display: block;
+    max-width: 80%;
 }
 
 linecontent * {

@@ -10,7 +10,7 @@
   },
   {
     "command": "Bg",
-    "arg1": "Texture2D/澡堂.jpg"
+    "arg1": "Texture2D/澡堂.webp"
   },
   {
     "command": "FadeIn",

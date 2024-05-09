@@ -38,20 +38,20 @@ function Request( fn ) {
     queuedrequests.push( fn );
 }
 
-function LoopUntil( fn, until, final, dt ) {
+function LoopUntil( fn, until, finale, dt ) {
     let i;
     dt = dt || 0.1;
     let func = function () {
         if ( !until() ) fn();
         else {
             clearInterval( i );
-            final();
+            finale();
         }
     };
     i = setInterval( func, dt );
 }
 const sleep = ( delay ) => new Promise( ( resolve ) => setTimeout( resolve, delay ) );
 
-function Next( fn, until, final ) {
+function Next( fn, until, finale ) {
     requestAnimationFrame( fn );
 }

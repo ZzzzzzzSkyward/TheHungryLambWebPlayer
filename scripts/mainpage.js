@@ -501,10 +501,13 @@ function displayCombined( data ) {
     clearData();
     let id = 0;
     data.forEach( item => {
+        if ( !item.original && !item.translation ) {
+            return;
+        }
         id++;
         const originalText = Line( 'orig', item.original + "<br/>" + item.translation );
         originalText.setAttribute( 'data-index', item.key );
-        item.sound = item.sound || ( item.command === "Line" ? item.arg3 : null );
+        item.sound = item.sound || item.arg3;
         if ( item.sound ) {
             originalText.setAttribute( 'data-sound', item.sound );
             originalText.classList.add( 'sound' );
@@ -521,10 +524,13 @@ function displayBoth( data ) {
     clearData();
     let id = 0;
     data.forEach( item => {
+        if ( !item.original && !item.translation ) {
+            return;
+        }
         id++;
         const originalText = Line( 'orig', item.original );
         originalText.setAttribute( 'data-index', item.key );
-        item.sound = item.sound || ( item.command === "Line" ? item.arg3 : null );
+        item.sound = item.sound || item.arg3;
         if ( item.sound ) {
             originalText.setAttribute( 'data-sound', item.sound );
             originalText.classList.add( 'sound' );
@@ -542,10 +548,13 @@ function displayEng( data ) {
     clearData();
     let id = 0;
     data.forEach( item => {
+        if ( !item.original && !item.translation ) {
+            return;
+        }
         id++;
         const originalText = Line( 'orig', item.translation );
         originalText.setAttribute( 'data-index', item.key );
-        item.sound = item.sound || ( item.command === "Line" ? item.arg3 : null );
+        item.sound = item.sound || item.arg3;
         if ( item.sound ) {
             originalText.setAttribute( 'data-sound', item.sound );
             originalText.classList.add( 'sound' );

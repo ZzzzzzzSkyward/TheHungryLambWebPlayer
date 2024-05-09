@@ -74,7 +74,7 @@ ScriptLoader.Load = function ( name, jsondata ) {
                 if ( !i.arg4.match( "Texture2D" ) ) {
                     i.arg4 = this.ResolveAbsolutePath( i.arg4, name );
                 }
-                this.PreloadAsset( 'img', i.arg4 );
+                this.PreloadAsset( 'img', this.FixSRC( i.arg4 ) );
             }
         }
         if ( c === 'If' ) {
@@ -91,6 +91,10 @@ ScriptLoader.Load = function ( name, jsondata ) {
         if ( c === 'BgVideo' ) {
             i.arg2 = i.arg2 === 'true';
             i.arg3 = i.arg3 === 'true';
+            //special treat to redirect
+            if ( !i.arg1.match( "video/" ) ) {
+                i.arg1 = this.ResolveAbsolutePath( i.arg1, name );
+            }
             this.PreloadAsset( 'video', i.arg1 );
         }
         if ( c === "Bg" ) {
@@ -98,7 +102,7 @@ ScriptLoader.Load = function ( name, jsondata ) {
             if ( !i.arg1.match( "Texture2D" ) ) {
                 i.arg1 = this.ResolveAbsolutePath( i.arg1, name );
             }
-            this.PreloadAsset( 'img', i.arg1 );
+            this.PreloadAsset( 'img', this.FixSRC( i.arg1 ) );
         }
         if ( c === 'Jump' ) {
             i.arg1 = parseInt( i.arg1 );
@@ -131,7 +135,7 @@ ScriptLoader.OnUpload = function () {
         this.Show();
         return;
     };
-    that.CreateStack();
+    this.CreateStack();
     const name = file.name;
     let that = this;
     const reader = new FileReader();
@@ -701,7 +705,7 @@ ScriptLoader.FixSRC = function ( src ) {
             .replace( /第五只小羊？/, '满穗' )
             .replace( /“大哥”/, '闯王' );
         if ( !src.match( "Texture2D" ) )
-            src = `Texture2D/${src}.jpg`;
+            src = `Texture2D/${src}.webp`;
     }
     return src;
 }
