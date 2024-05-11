@@ -215,7 +215,7 @@ sel {
     display: inline-block;
     position: relative;
     align-self: center;
-    background: url('../images/selection.webp');
+    background-image: url('../images/selection2.webp');
     width: 50%;
     height: 3em;
     line-height: 3em;
@@ -226,12 +226,14 @@ sel {
     mix-blend-mode: normal;
     text-shadow: 0 0 6px white;
     background-origin: content-box;
-    background-position: center;
+    background-position: calc(50% - 2em) center;
     background-repeat: no-repeat;
     padding-top: 2%;
+    background-size: contain;
 }
 
 .choice:hover {
+    background-image: url('../images/selection.webp');
     filter: brightness(1.1);
     mix-blend-mode: normal;
 }
