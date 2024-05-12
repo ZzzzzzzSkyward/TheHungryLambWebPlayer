@@ -57,7 +57,9 @@ ScriptLoader.Load = function ( name, jsondata ) {
             c = "Bg";
         }
         i.command = c;
-        if ( c === "Line" ) {
+        if ( c === "Version" ) {
+            this.LineCommands.Version.call( this, i.arg1 );
+        } else if ( c === "Line" ) {
             //convert
             if ( i.arg2 && !i.original ) {
                 i.original = i.arg2;
@@ -76,41 +78,38 @@ ScriptLoader.Load = function ( name, jsondata ) {
                 }
                 this.PreloadAsset( 'img', this.FixSRC( i.arg4 ) );
             }
-        }
-        if ( c === 'If' ) {
+        } else if ( c === 'If' ) {
             try {
                 i.arg1 = eval( "_=" + i.arg1 );
             } catch ( e ) {};
             i.arg2 = parseInt( i.arg2 );
-        }
-        if ( c === "Selection" && typeof i.arg1 === "string" ) {
+        } else if ( c === "Selection" && typeof i.arg1 === "string" ) {
             try {
                 i.arg1 = eval( "_=" + i.arg1 );
             } catch ( e ) {}
-        }
-        if ( c === 'BgVideo' ) {
+        } else if ( c === 'BgVideo' ) {
             i.arg2 = i.arg2 === 'true';
             i.arg3 = i.arg3 === 'true';
             //special treat to redirect
-            if ( !i.arg1.match( "video/" ) ) {
+            if ( !i.arg1.match( /^video/ ) ) {
                 i.arg1 = this.ResolveAbsolutePath( i.arg1, name );
             }
             this.PreloadAsset( 'video', i.arg1 );
-        }
-        if ( c === "Bg" ) {
+        } else if ( c === "Bg" ) {
             //special treat to redirect
             if ( !i.arg1.match( "Texture2D" ) ) {
                 i.arg1 = this.ResolveAbsolutePath( i.arg1, name );
             }
             this.PreloadAsset( 'img', this.FixSRC( i.arg1 ) );
-        }
-        if ( c === 'Jump' ) {
+        } else if ( c === 'Jump' ) {
             i.arg1 = parseInt( i.arg1 );
-        }
-        if ( c === 'Wait' ) {
+            if ( i.arg1 >= 0 ) {} else {
+                i.arg1 = "";
+                i.command = "Line";
+            }
+        } else if ( c === 'Wait' ) {
             i.arg1 = parseInt( i.arg1 );
-        }
-        if ( c === "FadeIn" || c === "FadeOut" ) {
+        } else if ( c === "FadeIn" || c === "FadeOut" ) {
             i.arg2 = parseInt( i.arg2 );
         }
     }
@@ -151,6 +150,11 @@ ScriptLoader.PreloadAsset = function ( tag, url ) {
     element.src = url;
     element.href = url;
     element.preload = true;
+    element.autoplay = true;
+    element.volume = 0;
+    element.muted = true;
+    element.controls = false;
+    element.looped = false;
     element.lazy = false;
     Append( element, this.preloadcontainer );
 
@@ -162,6 +166,14 @@ ScriptLoader.PreloadAsset = function ( tag, url ) {
         console.error( `Error preloading asset ${url}` );
         element.remove();
     } );
+    let el = Create( "link", "preloadassetlink" );
+    el.rel = "preload";
+    let ttype = tag;
+    if ( tag === "img" ) ttype = "image";
+    el.as = ttype;
+    console.log(ttype);
+    el.href = url;
+    Append( el, this.preloadcontainer );
 };
 ScriptLoader.FetchAndPlay = function ( url ) {
     let that = this;
@@ -175,9 +187,9 @@ ScriptLoader.FetchAndPlay = function ( url ) {
             } )
             .then( data => {
                 // Call handler with parsed data and resolve the Promise
-                that.Load( url, data );
                 if ( !that.scene )
                     that.Enter();
+                that.Load( url, data );
                 that.SeekChapter( url );
                 that.StartUpdating();
                 resolve( data );
@@ -474,7 +486,7 @@ ScriptLoader.LineCommands = {
         if ( arg1 == 1 ) {
             this.config.version = 1;
         } else {
-            this.config.version = version;
+            this.config.version = arg1;
         }
     },
     CharacterOff: function () {
@@ -585,7 +597,7 @@ ScriptLoader.LineCommands = {
         if ( arg3 ) {
             if ( !this.config.version ) {
                 //Fix Sui's voice
-                if ( this.pointer.chapter.match( '良' ) && this.pointer.chapter.match( '二|三' ) ) {
+                if ( this.pointer.chapter.match( '良' ) && this.pointer.chapter.match( '二|三' ) && arg3.match( '穗' ) ) {
                     arg3 = "AudioClip/" + arg3;
                 }
             }
@@ -631,6 +643,13 @@ ScriptLoader.SetLine = function ( l, c ) {
     if ( t === 'FadeOut' ) return l;
     if ( t === 'ChapterTitle' ) return l;
     if ( t === 'ChapterTitleOff' ) return l;
+}
+ScriptLoader.Current = function () {
+    let last = this.last;
+    let l = last.line;
+    let c = last.chapter;
+    let data = this.chapters[ c ][ l ];
+    return data;
 }
 ScriptLoader.SetChapter = function ( c ) {
     this.last.chapter = c;
@@ -921,6 +940,7 @@ ScriptLoader.PrevLine = function () {
 }
 ScriptLoader.NextLine = function () {
     if ( this.updating ) {
+        this.SetTime( this.config.duration );
         this.SeekLine( ( this.last.line || 0 ) + 1 );
     }
 }
