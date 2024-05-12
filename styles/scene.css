@@ -302,3 +302,11 @@ shake {
     pointer-events: none;
     user-select: none;
 }
+
+.preloadcontainer {
+    display: flex;
+    position: fixed;
+    width: 1px;
+    height: 1px;
+    overflow: visible;
+}
