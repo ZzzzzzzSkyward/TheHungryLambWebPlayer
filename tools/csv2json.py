@@ -16,6 +16,7 @@ def csv_to_json(input_file, output_file):
     for enc in e:
         try:
             with open(input_file, "r", encoding=enc) as csvfile:
+                csvfile.readline()
                 en = enc
                 break
         except Exception as ex:
@@ -43,7 +44,9 @@ def csv_to_json(input_file, output_file):
             # 将 CSV 列映射到 JSON 对象属性。
             c = row.get("command")
             if c == "Jump" and "arg1" in row:
-                row["arg1"] = int(row["arg1"]) - 1
+                row["arg1"] = int(row["arg1"]) - 2
+            if c == "If" and "arg2" in row:
+                row["arg2"] = int(row["arg2"]) - 2
             print(row)
             data.append(row)
 
