@@ -1,5 +1,4 @@
-[
-  {
+[ {
     "command": "Version",
     "arg1": "1"
   },
@@ -139,7 +138,8 @@
   },
   {
     "command": "Line",
-    "arg2": "我在她衣服完全落下来之前，还是忍不住别过了目光。"
+    "arg2": "我在她衣服完全落下来之前，还是忍不住别过了目光。",
+    "arg4": "满穗/脱衣-merge.webp"
   },
   {
     "command": "Line",
@@ -208,6 +208,9 @@
     "arg1": "满穗",
     "arg2": "[好。]",
     "arg3": "AudioClip/穗-160.m4a"
+  },
+  {
+    "command": "CharacterOff"
   },
   {
     "command": "FadeOut",

@@ -47,8 +47,8 @@ function MP4() {
     video.autoplay = true;
 }
 let BGVIDEOS = [
-    "[饿殍明末千里行_动态壁纸]“你喜欢满穗，还是穗_”.mp4",
-    "满穗烟花V4.mp4", "穗穗.mp4", "maintheme.webm"
+    "[饿殍明末千里行 动态壁纸]“你喜欢满穗，还是穗”.mp4",
+    "满穗烟花V4.mp4", "穗穗.mp4", "maintheme.webm", "饿殍.mp4", "共死.mp4"
 ];
 
 function BGVIDEO() {
@@ -98,16 +98,20 @@ function VIDEO() {
 
 function Show( el ) {
     if ( el.style.visibility === 'hidden' ) {
-        console.log( 'Show', el );
+        //console.log( 'Show', el );
         el.style.visibility = 'visible';
     }
+    el.classList.add( 'cssshown' );
+    el.classList.remove( 'csshidden' );
 }
 
 function Hide( el ) {
     if ( el.style.visibility !== 'hidden' ) {
-        console.log( 'Hide', el );
+        //console.log( 'Hide', el );
         el.style.visibility = 'hidden';
     }
+    el.classList.add( 'csshidden' );
+    el.classList.remove( 'cssshown' );
 }
 
 function BG() {
@@ -165,6 +169,9 @@ function opening() {
             Fade( 1 );
             PopStack( "opening" );
             RegisterGlobalKeybind();
+            if ( window.ismainscreen ) {
+                // Show( Query( 'intro' ) );
+            }
         }
         if ( s2 >= fadet ) {
             Fade( ( s2 - fadet ) / ( finish - fadet ) );
@@ -225,14 +232,22 @@ function Play() {
     ScriptLoader.Upload();
 }
 
-function AddButtons() {
+function AddMenu() {
     //sound icon
     let soundsvg = Query( "soundicon" );
     Append( soundsvg, spinectn );
     soundsvg.addEventListener( "click", ToggleSound );
+    //github icon
+    let githubicon = Query( "githubicon" );
+    Append( githubicon, spinectn );
     //menu
     let menu = Create( "div", "menu" );
     Append( menu, spinectn );
+    AddIcons2( menu );
+    return menu;
+}
+
+function AddIcons() {
     //json icon
     let jsonicon = MenuButton( "Read Split" );
     jsonicon.clicked = function () {
@@ -263,6 +278,52 @@ function AddButtons() {
     maintheme.clicked = ThemeVideoStack;
     Append( maintheme, menu );
     return menu;
+}
+
+function WorkCard( i ) {
+    let card = Create( "div", "workcard transition" );
+    let cardbg = Create( "div", "workcardbg transition" );
+    let a = Create( "a", "workcardctn transition" );
+    let title = Create( "p", "transition" );
+    Append( cardbg, a );
+    Append( card, a );
+    Append( title, card );
+    title.innerHTML = i.title;
+    if ( i.background ) {
+        card.style.backgroundImage = `url("${i.background}")`;
+    }
+    a.setAttribute( 'href', `?command=play&file=${i.file}` );
+    return a;
+}
+
+function Works( data ) {
+    let ctn = Create( "div", "worksctn" );
+    for ( let i of data ) {
+        if ( i.title ) {
+            let card = WorkCard( i );
+            Append( card, ctn );
+        }
+    }
+    return ctn;
+}
+
+function AddIcons2( menu ) {
+    //play icon
+    let playicon = MenuButton( "打开剧本" );
+    playicon.clicked = Play;
+    Append( playicon, menu );
+    //video icon
+    let maintheme = MenuButton( "观看视频" );
+    maintheme.clicked = ThemeVideoStack;
+    Append( maintheme, menu );
+}
+
+function AddWorks() {
+    //local website cannot fetch json, so block it
+    if ( location.href.match( /^file/ ) ) return;
+    //works
+    let worksctn = Works( WORKS );
+    Append( worksctn, spinectn );
 }
 let stacks = [];
 window.screenstacks = stacks;
@@ -334,22 +395,46 @@ function PopStack( name ) {
 }
 
 function MainScreenStack() {
+    window.ismainscreen = true;
     CreateStack( "main", [
-        //BG,
-        BGVIDEO,
+        BG,
+        //BGVIDEO,
         //VIDEO,
-        //MP4,
+        MP4,
         LOGO,
         function () {
             PlayBGM( "饿殍主题曲" );
         },
-        AddButtons,
+        AddMenu,
+        AddWorks,
         opening
     ], function () {
         PauseBGM();
     }, function () {
         PlayBGM();
+        //Show( Query( 'intro' ) );
     } );
+}
+
+function DebugMainScreenStack() {
+    CreateStack( "main", [
+        //BG,
+        //BGVIDEO,
+        //VIDEO,
+        //MP4,
+        LOGO,
+        function () {
+            // PlayBGM( "饿殍主题曲" );
+        },
+        AddMenu,
+        //opening
+    ], function () {
+        PauseBGM();
+    }, function () {
+        PlayBGM();
+        //Show( Query( 'intro' ) );
+    } );
+    RegisterGlobalKeybind();
 }
 
 function RegisterGlobalKeybind() {
@@ -402,7 +487,8 @@ function SetBGM( src ) {
 
 function PlayBGM( name ) {
     if ( !name ) {
-        bgm.play();
+        if ( bgm )
+            bgm.play();
         return;
     }
     if ( audios.includes( name ) ) {
@@ -419,11 +505,13 @@ function PlayBGM( name ) {
 }
 
 function PauseBGM() {
-    bgm.pause();
+    if ( bgm )
+        bgm.pause();
 }
 
 function ResetBGM() {
-    bgm.stop();
+    if ( bgm )
+        bgm.stop();
 }
 let globalLoadJSON;
 

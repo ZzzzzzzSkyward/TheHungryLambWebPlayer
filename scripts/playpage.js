@@ -83,9 +83,12 @@ ScriptLoader.Load = function ( name, jsondata ) {
                 i.arg1 = eval( "_=" + i.arg1 );
             } catch ( e ) {};
             i.arg2 = parseInt( i.arg2 );
-        } else if ( c === "Selection" && typeof i.arg1 === "string" ) {
+            if ( !i.arg2 ) {
+                delete i.arg2;
+            }
+        } else if ( c === "Selection" && typeof i.arg2 === "string" ) {
             try {
-                i.arg1 = eval( "_=" + i.arg1 );
+                i.arg2 = eval( "_=" + i.arg2 );
             } catch ( e ) {}
         } else if ( c === 'BgVideo' ) {
             i.arg2 = i.arg2 === 'true';
@@ -171,7 +174,6 @@ ScriptLoader.PreloadAsset = function ( tag, url ) {
     let ttype = tag;
     if ( tag === "img" ) ttype = "image";
     el.as = ttype;
-    console.log(ttype);
     el.href = url;
     Append( el, this.preloadcontainer );
 };
@@ -617,7 +619,7 @@ ScriptLoader.SetLine = function ( l, c ) {
     this.last.line = l;
     let data = this.chapters[ c ][ l ];
     let t = data.command
-    //5 args at most
+    //4 args at most
     let success = this.LineCommands[ t ].call( this, data.arg1, data.arg2, data.arg3, data.arg4 );
     if ( success ) return this.pointer.line;
     //Selection
@@ -929,7 +931,7 @@ ScriptLoader.Enter = function () {
             that.PrevLine();
         }
     } );
-    this.preloadcontainer = Create( "div" );
+    this.preloadcontainer = Create( "div", "preloadcontainer" );
     Append( this.preloadcontainer, scene );
     return scene;
 }
@@ -1101,13 +1103,12 @@ ScriptLoader.AppendSelection = function ( data ) {
         title
     } = this.ResolveLine( data );
     let choice = Create( "div", "choice disable-select" );
-    choice.innerHTML = line;
+    choice.innerHTML = line || title;
     let that = this;
     choice.addEventListener( 'click', ( e ) => {
-        if ( typeof data.arg1 === 'function' ) {
-            data.arg1.call( that.memory );
+        if ( typeof data.arg2 === 'function' ) {
+            data.arg2.call( that.memory );
         }
-        if ( !that.config.version ) {}
         that.ExitSelection();
         e.preventDefault();
         e.stopPropagation();
@@ -1117,6 +1118,7 @@ ScriptLoader.AppendSelection = function ( data ) {
 
 }
 ScriptLoader.ExitSelection = function () {
+    this.HideSelection();
     let data = this.chapters[ this.pointer.chapter ];
     let l = this.last.line;
     while ( data[ l ] && data[ l ].command === 'Selection' ) {
@@ -1124,4 +1126,5 @@ ScriptLoader.ExitSelection = function () {
     }
     this.SeekLine( l );
     this.SetLine( l );
+    this.ImmediateUpdate();
 }

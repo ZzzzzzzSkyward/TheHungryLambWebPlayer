@@ -11,7 +11,7 @@
     --ratio: calc(4 / 3);
     font-size: 3vh;
     overflow: hidden;
-    font-family: "Segoe Print", "Century Schoolbook", "Times New Roman", Georgia, "Microsoft YaHei", SimSun, Arial, Helvetica, sans-serif;
+    font-family: "华文中宋", "汉仪中宋简", "Century Schoolbook", "Times New Roman", Georgia, "Microsoft YaHei", SimSun, Arial, Helvetica, sans-serif;
 }
 
 body {
@@ -246,10 +246,19 @@ input::placeholder {
     position: relative;
     left: 0;
     top: 0;
-    width: 100%;
+    width: 90%;
     height: 100%;
     backdrop-filter: blur(10px);
     overflow-y: auto;
+}
+
+#githubicon {
+    right: calc(2% + 0.5em);
+    top: calc(1%);
+    width: 1em;
+    aspect-ratio: 1;
+    position: absolute;
+    display: flex;
 }
 
 .line {
@@ -428,7 +437,8 @@ body {
     display: block;
 }
 
-#soundicon:hover {
+#soundicon:hover,
+#githubicon:hover {
     transform: scale(1.2);
 }
 
@@ -487,18 +497,114 @@ body {
 }
 
 #intro {
-    z-index: 999;
     display: block;
-    left: 20%;
-    width: 80%;
+    right: 0;
+    transform: translateX(95%);
+    width: 50%;
     top: 10%;
     position: absolute;
-    background-color: rgba(255, 255, 255, 0.164);
-    pointer-events: none;
+    background-color: rgb(255 255 255 / 28%);
+    backdrop-filter: blur(5px) brightness(2);
+    max-height: 80%;
+    transition: transform 0.3s ease-out;
+    overflow: auto;
 }
 
 #intro p {
     line-height: 1.2em;
     padding: 0;
     margin: 0;
+}
+
+#intro input {
+    display: block;
+    visibility: visible;
+}
+
+#intro label {
+    display: flex;
+}
+
+#intro.csshidden {
+    display: none;
+}
+
+#intro:hover {
+    transform: translateX(0px);
+}
+
+.worksctn {
+    display: grid;
+    position: absolute;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    justify-items: stretch;
+    width: auto;
+    height: auto;
+    left: 8%;
+    top: 64%;
+    grid-template-columns: 1fr 1fr;
+}
+
+.workcard:hover {
+    filter: brightness(1.1);
+}
+
+.workcard:hover p {
+    transform: scale(1.1);
+}
+
+a.workcardctn {
+    min-width: 5%;
+    min-height: 5%;
+    position: relative;
+    display: flex;
+    width: 100%;
+    aspect-ratio: 1.5;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    line-break: anywhere;
+    word-wrap: break-word;
+}
+
+.workcard,
+.workcardbg {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 100%;
+    text-align: center;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+}
+
+.workcardbg {
+    background-image: url("../images/故事.webp");
+    position: absolute;
+    height: 100%;
+}
+
+.workcard {
+    width: 92%;
+    left: 4%;
+    height: 77%;
+    background-color: #00000098;
+    background-blend-mode: multiply;
+    mix-blend-mode: multiply;
+}
+
+.workcard p {
+    width: 80%;
+    padding: 0;
+    margin: 0;
+    left: 10%;
+    position: relative;
 }
