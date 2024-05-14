@@ -17,12 +17,13 @@ def csv_to_json(input_file, output_file):
         try:
             with open(input_file, "r", encoding=enc) as csvfile:
                 en = enc
+                break
         except Exception as ex:
-            print(ex)
             pass
     if en == False:
         print("unsupported codec, return without compiling")
         return
+    print("guess", en)
     with open(input_file, "r", encoding=en) as csvfile, open(
         output_file, "w", encoding="utf-8"
     ) as jsonfile:
