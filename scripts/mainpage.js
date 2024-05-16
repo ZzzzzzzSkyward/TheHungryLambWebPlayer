@@ -448,7 +448,8 @@ function RegisterGlobalKeybind() {
 
 function ScriptScreenStack( file ) {
     AddCtn();
-    CreateStack( "script", [
+    ScriptLoader.CreateStack();
+    CreateStack( "opening", [
         opening
     ] );
     ScriptLoader.FetchAndPlay( file );

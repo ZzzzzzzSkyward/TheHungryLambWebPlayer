@@ -114,6 +114,10 @@ ScriptLoader.Load = function ( name, jsondata ) {
             i.arg1 = parseInt( i.arg1 );
         } else if ( c === "FadeIn" || c === "FadeOut" ) {
             i.arg2 = parseInt( i.arg2 );
+        } else if ( c === "CSS" ) {
+            let el = Create( "style" );
+            el.innerHTML = i.arg1;
+            Append( el, this.preloadcontainer );
         }
     }
 }
@@ -614,11 +618,26 @@ ScriptLoader.LineCommands = {
         //handled by SetLine
     }
 };
+ScriptLoader.Prefetch = function ( l, c ) {
+    c = c || this.pointer.chapter;
+    let data = this.chapters[ c ][ l ];
+    let cdata = this.chapters[ c ][ this.last.line ];
+    if ( !data ) return;
+    if ( !cdata ) return;
+    let t = data.command;
+    if ( t === "Bg" && cdata.command === "FadeOut" ) {
+        //4 args at most
+        let success = this.LineCommands[ t ].call( this, data.arg1, data.arg2, data.arg3, data.arg4 );
+        if ( success ) return this.pointer.line;
+    }
+};
 ScriptLoader.SetLine = function ( l, c ) {
     c = c || this.pointer.chapter;
     this.last.line = l;
     let data = this.chapters[ c ][ l ];
-    let t = data.command
+    //prefetch
+    this.Prefetch( l + 1, c );
+    let t = data.command;
     //4 args at most
     let success = this.LineCommands[ t ].call( this, data.arg1, data.arg2, data.arg3, data.arg4 );
     if ( success ) return this.pointer.line;
