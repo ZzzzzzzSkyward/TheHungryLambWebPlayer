@@ -55,10 +55,13 @@ def csv_to_json(input_file, output_file):
 
 
 # 获取命令行参数。
-input_file = sys.argv[1]
-output_file = f"{input_file.split('.')[0]}.json"
+if len(sys.argv)<2:
+    print("请输入json文件路径")
+else:
+    input_file = sys.argv[1]
+    output_file = f"{input_file.split('.')[0]}.json"
 
-# 转换 CSV 文件并保存为 JSON 文件。
-csv_to_json(input_file, output_file)
+    # 转换 CSV 文件并保存为 JSON 文件。
+    csv_to_json(input_file, output_file)
 
-print(f"已将 CSV 文件 {input_file} 转换为 JSON 文件 {output_file}")
+    print(f"已将 CSV 文件 {input_file} 转换为 JSON 文件 {output_file}")
