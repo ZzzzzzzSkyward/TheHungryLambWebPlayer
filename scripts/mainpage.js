@@ -138,7 +138,7 @@ function LOGO() {
 
 function opening() {
     let fadet = 1.1;
-    let finish = 1.2;
+    let finish = 1.5;
     let speed = 1 / 10000 / 2;
     let s = 1;
     let scale = 0.2;
@@ -153,7 +153,7 @@ function opening() {
     let Fade = function ( pct ) {
         openingctn.style.opacity = ( 1 - pct ) * ( 1 - pct );
         if ( openingctn.style.opacity <= 1e-2 ) {
-            openingctn.style.display = 'none';
+            Hide( openingctn );
         }
     };
     let fn = function () {
@@ -164,7 +164,10 @@ function opening() {
         s2 = s2 + s;
         opening.style.transform = `scale3d(${sca},${sca},${sca})`;
         if ( s2 < finish ) {
-            requestAnimationFrame( fn );
+            if ( s2 >= fadet ) {
+                Fade( ( s2 - fadet ) / ( finish - fadet ) );
+            }
+            return requestAnimationFrame( fn );
         } else {
             Fade( 1 );
             PopStack( "opening" );
@@ -173,11 +176,60 @@ function opening() {
                 // Show( Query( 'intro' ) );
             }
         }
-        if ( s2 >= fadet ) {
-            Fade( ( s2 - fadet ) / ( finish - fadet ) );
+    }
+    fn();
+}
+
+function FanArtClaim() {
+    let fadet = 1;
+    let start = 0.5;
+    let finish = 1.3;
+    let speed = 1 / 10000;
+    let s = 1;
+    let scale = 0.1;
+    AddCtn();
+    let openingctn = Query( "openingctn" );
+    Show( openingctn );
+    let opening = Query( "opening" );
+    opening.style.backgroundPosition = "center top";
+    opening.style.backgroundSize = "40%";
+    opening.style.top = "calc(50% - var(--w) / 4 * 3)";
+    opening.style.backgroundImage = 'url("images/logoEN2.webp")';
+    opening.innerHTML = `
+    <p style='font-size:3em;line-height:1em;transform:translate3d(0,0,var(--z))'>满穗的梦</p>
+    <p>
+    <span style='--color:wheat;color:var(--color);text-shadow:0 0 7px var(--color);'>《饿殍：明末千里行》</span>
+    同人作品
+    </p>`;
+    window.opening = opening;
+    let begin = new Date();
+    let Fade = function ( pct2, pct, spct ) {
+        let opct = Math.max( Math.min( pct2, pct ), 0 );
+        opct = opct * opct;
+        openingctn.style.opacity = opct;
+        let sca = spct * scale + s;
+        opening.style.transform = `scale3d(${sca},${sca},${sca}) translate3d(0,0,0)`;
+        let z = spct;
+        opening.style.setProperty( "--z", `${z}vw` );
+        if ( opct <= 1e-2 ) {
+            Hide( openingctn );
+        } else {
+            Show( openingctn );
         }
     }
-    requestAnimationFrame( fn );
+    let fn = function () {
+        let now = new Date();
+        let elapse = now - begin;
+        let s2 = elapse * speed;
+        if ( s2 < finish ) {
+            Fade( ( finish - s2 ) / ( finish - fadet ), s2 / start, s2 / finish );
+            return requestAnimationFrame( fn );
+        } else {
+            Fade( 1, 0, 1 );
+            PopStack( "fanartclaim" );
+        }
+    }
+    fn();
 }
 
 let togglebgm = true;
@@ -186,7 +238,7 @@ function ToggleSound() {
     //toggle bgm
     let soundsvg = Query( "soundicon" );
     togglebgm = !togglebgm;
-    if ( togglebgm ) {
+    if ( !togglebgm ) {
         PauseBGM();
         soundsvg.classList.add( "disabled" );
     } else {
@@ -247,7 +299,7 @@ function AddMenu() {
     return menu;
 }
 
-function AddIcons() {
+function AddIcons( menu ) {
     //json icon
     let jsonicon = MenuButton( "Read Split" );
     jsonicon.clicked = function () {
@@ -265,7 +317,7 @@ function AddIcons() {
     //json icon 3
     let eicon = MenuButton( "Read English" );
     eicon.clicked = function () {
-        globalLoadJSON = displayEng;
+        globalLoadJSON = displayAll;
         Read();
     };
     Append( eicon, menu );
@@ -320,7 +372,7 @@ function AddIcons2( menu ) {
 
 function AddWorks() {
     //local website cannot fetch json, so block it
-    if ( location.href.match( /^file/ ) ) return;
+    if ( location.href.match( /^file/ ) && !window.IsElectron ) return;
     //works
     let worksctn = Works( WORKS );
     Append( worksctn, spinectn );
@@ -449,6 +501,13 @@ function RegisterGlobalKeybind() {
 function ScriptScreenStack( file ) {
     AddCtn();
     ScriptLoader.CreateStack();
+    if ( false ) {
+        CreateStack( "fanartclaim", [
+
+        ], null, function () {
+            FanArtClaim();
+        } );
+    }
     CreateStack( "opening", [
         opening
     ] );
@@ -471,10 +530,10 @@ let audios = [
     "饥荒绝望.m4a",
     "狼的救赎.m4a",
     "旅途.m4a",
-    "明末-白日无光.m4a",
-    "明末-良穗相遇.m4a",
+    "白日无光.m4a",
+    "良穗相遇.m4a",
     "明末千里行.m4a",
-    "明末-芸芸众生.m4a",
+    "芸芸众生.m4a",
     "皮影戏.m4a",
     "燃血之时.m4a",
     "心近之刻.m4a",
@@ -487,6 +546,7 @@ function SetBGM( src ) {
 }
 
 function PlayBGM( name ) {
+    if ( !togglebgm ) return;
     if ( !name ) {
         if ( bgm )
             bgm.play();
@@ -564,7 +624,7 @@ function Line( name, content ) {
 function OnTextClicked( event ) {
     const soundUrl = event.target.getAttribute( 'data-sound' );
     if ( soundUrl ) {
-        let src = `AudioClip/${soundUrl}.m4a`;
+        let src = soundUrl;
         const voicea = Query( "voice" );
         voicea.src = src;
         voicea.play();
@@ -651,4 +711,84 @@ function displayEng( data ) {
         reader.appendChild( originalText );
         originalText.addEventListener( 'click', OnTextClicked );
     } );
+}
+
+function displayAll( data ) {
+    reader.classList.add( 'single' );
+    clearData();
+    let id = 0;
+    data.forEach( item => {
+        if ( item.command === "Line" || !item.command ) {
+            id++;
+            const originalText = Line( 'orig', item.arg2 );
+            originalText.setAttribute( 'data-index', item.key || id );
+            item.sound = item.sound || item.arg3;
+            if ( item.sound ) {
+                originalText.setAttribute( 'data-sound', item.sound );
+                originalText.classList.add( 'sound' );
+            }
+            reader.appendChild( originalText );
+            originalText.addEventListener( 'click', OnTextClicked );
+        }
+    } );
+}
+
+function displayFull( data ) {
+    reader.classList.add( 'single' );
+    clearData();
+    let id = 0;
+    let anchors = [];
+    let el = [];
+    data.forEach( item => {
+        if ( !item.command && !item.arg1 && !item.arg2 ) return;
+        id++;
+        if ( item.command === "Jump" ) {
+            item.arg1 = item.arg1.substring( 1 );
+            item.arg2 = `<a href="#${item.arg1}">${item.arg1}</a>`;
+            item.key = "跳转";
+            anchors.push( item.arg1 );
+        }
+        if ( item.command === "ChapterTitle" ) {
+            item.key = "章节";
+            item.arg2 = item.arg1;
+        }
+        const originalText = Line( 'orig', item.arg2 );
+        originalText.setAttribute( 'data-index', item.key || id );
+        if ( !item.key ) {
+            originalText.hide = true;
+        }
+        if ( item.command && item.command.substring( 0, 1 ) === "*" ) {
+            originalText.id = item.command.substring( 1 );
+        }
+        if ( item.command === "ChapterTitle" ) {
+            originalText.id = item.arg1;
+        }
+        item.sound = item.sound || item.arg3;
+        if ( item.sound ) {
+            originalText.setAttribute( 'data-sound', `AudioClip/${item.sound}.m4a` );
+            originalText.classList.add( 'sound' );
+        }
+        el.push( originalText );
+        originalText.addEventListener( 'click', OnTextClicked );
+    } );
+    for ( let i of el ) {
+        if ( i.id && anchors.includes( i.id ) ) {
+            i.hide = null;
+            i.innerHTML = i.id;
+            i.setAttribute( 'data-index', "锚点" );
+        }
+        if ( !i.hide ) {
+            reader.appendChild( i );
+        }
+    }
+}
+
+function FullTextStack() {
+    CreateStack( "text", [
+        BG,
+        CreateReader
+    ], function () {}, function () {} );
+    setTimeout( function () {
+        displayFull( FULLTEXT );
+    }, 0 );
 }

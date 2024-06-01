@@ -55,3 +55,28 @@ const sleep = ( delay ) => new Promise( ( resolve ) => setTimeout( resolve, dela
 function Next( fn, until, finale ) {
     requestAnimationFrame( fn );
 }
+let cpy = function ( obj ) {
+    if ( window.clipboardData ) {
+        window.clipboardData.clearData();
+        window.clipboardData.setData( "Text", text );
+        return true;
+    } else if ( document.execCommand ) {
+        var cb = Create( "textarea" );
+        document.body.appendChild( cb );
+        cb.innerText = text;
+        cb.select();
+        document.execCommand( "copy" );
+        document.body.removeChild( cb );
+        cb = null;
+        return true;
+    }
+}
+window.WriteCB = window.WriteCB || cpy;
+window.ReadCB = window.ReadCB || async function () {
+    try {
+        return await navigator.clipboard.readText();
+    } catch ( err ) {
+        console.error( 'Failed to read clipboard content:', err );
+        return '';
+    }
+}

@@ -14,13 +14,15 @@ let ScriptLoader = {
         line: -2
     },
     config: {
-        speed: 10,
-        duration: 1000,
-        interval: 1000,
-        fps: 30,
-        DisplayBoth: false,
-        OriginalFirst: true,
-        DisableTyping: false
+        //取最大值
+        per_word: 50, //每个词多少毫秒
+        duration: 1000, //一共多少毫秒
+
+        interval: 2000, //停顿多少毫秒
+        fps: 30, //多久刷新一次
+        DisplayBoth: false, //双语
+        OriginalFirst: true, //原文优先
+        DisableTyping: false //禁用打字机
     },
     memory: {
         parent: null
@@ -28,11 +30,13 @@ let ScriptLoader = {
     images: [],
     chars: [],
     uis: [],
+    inputblock: {},
     ui: null,
     bg: null,
     fg: null,
     soundvolume: 1,
-    voicevolume: 0.6
+    voicevolume: 0.6,
+    autoread: false
 };
 //单例模式
 window.ScriptLoader = ScriptLoader;
@@ -45,7 +49,6 @@ ScriptLoader.Load = function ( name, jsondata ) {
         "arg2": null,
         "arg3": null,
         "arg4": null,
-        "arg5": null,
         "original": "[……]",
         "translation": " \"...\""
     }*/
@@ -53,9 +56,27 @@ ScriptLoader.Load = function ( name, jsondata ) {
     for ( let i of jsondata ) {
         let c = i.command;
         if ( !c ) c = "Line";
-        if ( c.match( /[Bb]g/ ) && c.match( / 黑场/ ) ) {
+        if ( c.match( /[Bb]g/ ) && c.match( "黑场" ) ) {
             c = "Bg";
         }
+        if ( c === "心理活动" ) {
+            c = "FadeOut";
+            i.arg1 = "rgba(0,0,0,0.3)";
+            i.arg2 = "100";
+        }
+        if ( c === "心理活动-关" ) {
+            c = "FadeIn";
+            i.arg1 = "rgba(0,0,0,0.3)";
+            i.arg2 = "100";
+        }
+        if ( c === "淡出" ) {
+            c = "FadeOut";
+            i.arg1 = "black";
+        }
+        if ( c === "背景音乐-关" ) {
+            c = "StopAmbience";
+        }
+
         i.command = c;
         if ( c === "Version" ) {
             this.LineCommands.Version.call( this, i.arg1 );
@@ -87,9 +108,13 @@ ScriptLoader.Load = function ( name, jsondata ) {
                 delete i.arg2;
             }
         } else if ( c === "Selection" && typeof i.arg2 === "string" ) {
-            try {
-                i.arg2 = eval( "_=" + i.arg2 );
-            } catch ( e ) {}
+            if ( !this.config.version ) {
+
+            } else {
+                try {
+                    i.arg2 = eval( "_=" + i.arg2 );
+                } catch ( e ) {}
+            }
         } else if ( c === 'BgVideo' ) {
             i.arg2 = i.arg2 === 'true';
             i.arg3 = i.arg3 === 'true';
@@ -111,9 +136,9 @@ ScriptLoader.Load = function ( name, jsondata ) {
                 i.command = "Line";
             }
         } else if ( c === 'Wait' ) {
-            i.arg1 = parseInt( i.arg1 );
+            i.arg1 = parseInt( i.arg1 ) || 1000;
         } else if ( c === "FadeIn" || c === "FadeOut" ) {
-            i.arg2 = parseInt( i.arg2 );
+            i.arg2 = parseInt( i.arg2 ) || 1000;
         } else if ( c === "CSS" ) {
             let el = Create( "style" );
             el.innerHTML = i.arg1;
@@ -453,9 +478,8 @@ ScriptLoader.SetTime = function ( t ) {
             this.linecontent.innerHTML = line;
             let actualtext = this.linecontent.innerText;
             let len = actualtext.length;
-            let pred1 = t * this.config.speed;
-            let pred2 = t / this.config.duration;
-            let pred = Math.max( 0, Math.min( pred1, pred2, 1 ) );
+            let dur = this.GetLineDuration( actualtext );
+            let pred = Math.min( 1, Math.max( 0, t / dur ) );
             let end = Math.round( pred * len );
             if ( len <= end || this.config.DisableTyping ) {
                 this.FinishLine();
@@ -464,6 +488,12 @@ ScriptLoader.SetTime = function ( t ) {
             }
         }
     }
+}
+ScriptLoader.GetLineDuration = function ( line ) {
+    let len = line.length;
+    let predict_per_word = this.config.per_word * len;
+    let predict_duration = this.config.duration;
+    return Math.max( predict_duration, predict_per_word );
 }
 /*
     Version                 1
@@ -603,8 +633,10 @@ ScriptLoader.LineCommands = {
         if ( arg3 ) {
             if ( !this.config.version ) {
                 //Fix Sui's voice
-                if ( this.pointer.chapter.match( '良' ) && this.pointer.chapter.match( '二|三' ) && arg3.match( '穗' ) ) {
-                    arg3 = "AudioClip/" + arg3;
+                if (
+                    this.pointer.chapter.match( '良' ) &&
+                    arg3.match( '穗' ) ) {
+                    arg3 = arg3.replace( /[满]?穗/, "满穗" );
                 }
             }
             this.PlayVoice( arg3 );
@@ -618,6 +650,29 @@ ScriptLoader.LineCommands = {
         //handled by SetLine
     }
 };
+ScriptLoader.IsDurable = {
+    Line: true,
+    FadeIn: true,
+    FadeOut: true,
+    ChapterTitle: true,
+    ChapterTitleOff: true
+};
+ScriptLoader.GetDuration = function ( cmd, data ) {
+    let durable = this.IsDurable[ cmd ];
+    if ( !durable ) return null;
+    if ( cmd === "Line" ) {
+        //如果有音频，就不要自动
+        if ( data.arg3 ) {
+            return 10000000;
+        }
+        if ( data.arg2 )
+            return this.GetLineDuration( data.arg2 );
+        return null;
+    }
+    if ( cmd === "FadeIn" || cmd === "FadeOut" ) return data.arg2 || 1000;
+    if ( cmd === "ChapterTitle" || cmd === "ChapterTitleOff" ) return 1000;
+    return this.config.interval;
+}
 ScriptLoader.Prefetch = function ( l, c ) {
     c = c || this.pointer.chapter;
     let data = this.chapters[ c ][ l ];
@@ -639,7 +694,19 @@ ScriptLoader.SetLine = function ( l, c ) {
     this.Prefetch( l + 1, c );
     let t = data.command;
     //4 args at most
-    let success = this.LineCommands[ t ].call( this, data.arg1, data.arg2, data.arg3, data.arg4 );
+    let cmd = this.LineCommands[ t ];
+    if ( !cmd ) return;
+    let success = cmd.call( this, data.arg1, data.arg2, data.arg3, data.arg4 );
+    //auto read
+    if ( this.autoread ) {
+        if ( t === "Line" && data.arg3 ) {
+            this.WaitAudio();
+        } else {
+            let time = this.GetDuration( t, data ) + this.config.interval;
+            if ( time )
+                this.WaitNextLine( time );
+        }
+    }
     if ( success ) return this.pointer.line;
     //Selection
     if ( t === "Selection" ) {
@@ -917,7 +984,7 @@ ScriptLoader.Enter = function () {
     uploader.accept = "application/json";
     this.uploader = uploader;
     //keybind
-    document.body.addEventListener( "keydown", function ( event ) {
+    document.body.addEventListener( "keydown", async function ( event ) {
         if ( that.blockinput ) return;
         switch ( event.key ) {
             case "ArrowLeft":
@@ -929,6 +996,26 @@ ScriptLoader.Enter = function () {
             case " ":
             case "":
                 that.NextLine();
+                break;
+            case "j":
+            case "J":
+                if ( confirm( "Will get the key from your clipboard and jump to there." ) ) {
+                    let text = await ReadCB();
+                    console.log( text );
+                    that.SeekKey( text );
+                }
+                break;
+            case "C":
+            case "c":
+                let k = that.chapters[ that.pointer.chapter ][ that.pointer.line ];
+                if ( k && k.key ) {
+                    alert( `Key [${k.key}] copied to your clipboard.` );
+                    WriteCB( k.key )
+                }
+                break;
+            case "A":
+            case "a":
+                that.AutoRead( !that.autoread );
                 break;
         }
     } );
@@ -959,11 +1046,72 @@ ScriptLoader.PrevLine = function () {
         this.SeekLine( ( this.last.line || 0 ) - 1 );
     }
 }
+ScriptLoader.SeekKey = function ( key ) {
+    if ( !key ) return;
+    let data = this.chapters[ this.pointer.chapter ];
+    for ( let i = 0; i < data.length; i++ ) {
+        if ( data[ i ].key === key ) {
+            this.SetLine( i );
+            this.SeekLine( i );
+            return;
+        }
+    }
+    alert( "Key not found in this chapter." );
+}
 ScriptLoader.NextLine = function () {
     if ( this.updating ) {
         this.SetTime( this.config.duration );
+        let d = this.chapters[ this.pointer.chapter ];
+        if ( this.last.line >= ( d ? d.length : 0 ) - 1 ) {
+            alert( "Chapter End." );
+        }
         this.SeekLine( ( this.last.line || 0 ) + 1 );
     }
+}
+//auto
+ScriptLoader.AutoRead = function ( enabled ) {
+    this.autoread = enabled;
+    if ( this.autoread ) {
+        this.WaitNextLine( 0 );
+    } else {
+        this.CancelNextLine();
+    }
+}
+ScriptLoader.WaitNextLine = function ( t ) {
+    if ( !t ) {
+        console.log( "no time" );
+        return;
+    }
+    this.CancelNextLine();
+    let that = this;
+    this.autoreadtask = setTimeout( function () {
+        if ( that.autoread ) {
+            that.NextLine();
+        }
+        that.CancelNextLine();
+    }, t );
+}
+ScriptLoader.CancelNextLine = function () {
+    if ( this.autoreadtask ) {
+        clearInterval( this.autoreadtask );
+        this.autoreadtask = null;
+    }
+}
+ScriptLoader.WaitAudio = function () {
+    this.CancelNextLine();
+    const audio = this.voice;
+    let timeoutId;
+    let that = this;
+
+    const handleAudioEnd = () => {
+        clearTimeout( timeoutId );
+        audio.removeEventListener( 'ended', handleAudioEnd );
+        audio.removeEventListener( 'error', handleAudioEnd );
+        that.WaitNextLine( that.config.interval );
+    };
+
+    audio.addEventListener( 'ended', handleAudioEnd );
+    audio.addEventListener( 'error', handleAudioEnd );
 }
 //called
 ScriptLoader.CreateStack = function () {
@@ -976,6 +1124,11 @@ ScriptLoader.CreateStack = function () {
     CreateStack( "scene", [ function () {
         that.StartUpdating();
         that.Show();
+        //hide the intro
+        let intro = Query( "intro" );
+        if ( intro ) {
+            Hide( intro );
+        }
         return that.scene;
     } ], function () {
         that.StopUpdating();
@@ -984,23 +1137,30 @@ ScriptLoader.CreateStack = function () {
         that.StartUpdating();
         that.Show();
     } );
-    //hide the intro
-    let intro = Query( "intro" );
-    if ( intro ) {
-        Hide( intro );
+}
+ScriptLoader.BlockInput = function ( source, value ) {
+    this.inputblock[ source ] = value;
+    this.blockinput = false;
+    for ( let i in this.inputblock ) {
+        if ( this.inputblock.hasOwnProperty( i ) ) {
+            if ( this.inputblock[ i ] ) {
+                this.blockinput = true;
+                return;
+            }
+        }
     }
 }
 ScriptLoader.Hide = function () {
     this.scene.style.display = 'none';
     this.sound.volume = 0;
     this.voice.volume = 0;
-    this.blockinput = true;
+    this.BlockInput( "hide", true );
 }
 ScriptLoader.Show = function () {
     this.scene.style.display = 'flex';
-    this.blockinput = false;
     this.sound.volume = this.soundvolume;
     this.voice.volume = this.voicevolume;
+    this.BlockInput( "hide", false );
 }
 //sound, bgm, Ambience
 ScriptLoader.PlaySound = function ( src ) {
@@ -1109,12 +1269,11 @@ ScriptLoader.ClearSelection = function () {
 }
 ScriptLoader.ShowSelection = function () {
     Show( this.selection );
-    if ( !this.config.version )
-        this.blockinput = true;
+    this.BlockInput( "selection", true );
 }
 ScriptLoader.HideSelection = function () {
     Hide( this.selection );
-    this.blockinput = false;
+    this.BlockInput( "selection", false );
 }
 ScriptLoader.AppendSelection = function ( data ) {
     let {
@@ -1125,8 +1284,24 @@ ScriptLoader.AppendSelection = function ( data ) {
     choice.innerHTML = line || title;
     let that = this;
     choice.addEventListener( 'click', ( e ) => {
-        if ( typeof data.arg2 === 'function' ) {
-            data.arg2.call( that.memory );
+        if ( !that.config.version ) {
+            let d = that.chapters[ that.pointer.chapter ];
+            let flag = false;
+            for ( let i = 0; i < d.length; i++ ) {
+                if ( d[ i ].command === data.arg1 ) {
+                    that.SetLine( i );
+                    that.SeekLine( i );
+                    flag = true;
+                    break;
+                }
+            }
+            if ( !flag ) {
+                alert( "This choice leads to another chapter." );
+            }
+        } else {
+            if ( typeof data.arg2 === 'function' ) {
+                data.arg2.call( that.memory );
+            }
         }
         that.ExitSelection();
         e.preventDefault();

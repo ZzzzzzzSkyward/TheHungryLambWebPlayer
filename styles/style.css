@@ -266,7 +266,7 @@ input::placeholder {
     background: rgb(227 227 227 / 40%);
     padding: 0.1em;
     margin: 0;
-    font-size: 1vw;
+    font-size: 1em;
     font-family: "华文中宋", "Microsoft YaHei", Georgia, 'Times New Roman', SimSun, Arial;
 }
 
@@ -295,7 +295,7 @@ orig.line:before {
     flex-direction: column;
     margin-left: 2%;
     margin-right: 2%;
-    width: 60%;
+    width: 96%;
 }
 
 #reaeder.double {
@@ -390,20 +390,40 @@ video.maintheme {
     display: block;
     background-color: black;
     transform-style: preserve-3d;
+    perspective: 1000px;
     text-align: center;
+}
+
+.openingctn * {
+    backface-visibility: hidden;
+    transform-origin: center center;
+    transition:all 0.1s linear;
 }
 
 .opening {
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: contain;
     transform-origin: center center;
-    transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1) translate3d(0, 0, 0);
+    transform-style: preserve-3d;
+    perspective: 1000px;
     --w: 50%;
     width: var(--w);
     height: var(--w);
     position: absolute;
     left: calc(50% - var(--w) / 2);
     top: calc(50% - var(--w) / 2);
+    background-position: center center;
+    --color: white;
+    color: var(--color);
+    text-align: center;
+    display: flex;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: flex-end;
+    align-items: center;
+    flex-direction: column;
+    text-shadow: 0 0 7px var(--color);
 }
 
 
